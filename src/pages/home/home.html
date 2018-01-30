@@ -1,11 +1,25 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Tower 22
+      Tower 22 : {{response?.equipmentType}}
     </ion-title>
+    <ion-buttons end>
+        <button ion-button icon-only >
+          version: {{response?.version}}
+        </button>
+        <button ion-button icon-only >
+            app: {{response?.application}}
+          </button>
+      </ion-buttons>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
- 
+<ion-content padding class="card-background-page">
+  <img class="button" src="../../assets/imgs/icone-piscine.png" width="200px" [navPush]="pushPage" [navParams]="params">
 </ion-content>
+
+<ion-footer no-border>
+    <ion-toolbar>
+        <ion-title>{{response?.date | date : 'medium'}}</ion-title>
+    </ion-toolbar>
+</ion-footer>

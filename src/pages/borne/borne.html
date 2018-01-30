@@ -1,0 +1,34 @@
+<!--
+  Generated template for the BornePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Bienvenue sur la borne de paiement </ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only>
+        <ion-icon name="cart"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list>
+    <ion-item *ngFor="let article of articles">
+      <ion-img width="80" height="80" [src]='article.logo'></ion-img>
+      {{article.name}}
+      <ion-icon name="pricetag" item-end> {{article.price | number:'2.2-5'}} €</ion-icon>
+      <ion-buttons item-end>
+        <button ion-button icon-only (click)="addTable()">
+          <ion-icon name="add"></ion-icon>
+        </button>
+      </ion-buttons>
+    </ion-item>
+  </ion-list>
+</ion-content>

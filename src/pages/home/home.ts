@@ -3,16 +3,20 @@ import { NavController } from 'ionic-angular';
 import { LoadingController } from 'ionic-angular';
 import { RestProvider } from '../../providers/rest/rest';
 import { ToastController } from 'ionic-angular/components/toast/toast-controller';
+import { BornePage } from '../borne/borne';
 
 
 
 @Component({
   selector: 'page-home',
-  templateUrl: 'home.html'
+  templateUrl: 'home.html',
 })
 export class HomePage {
-
+  params: Object;
+  pushPage: any;
+  response: Object;
   constructor(public navCtrl: NavController, public loadingCtrl: LoadingController, private rest: RestProvider, private toastCtrl: ToastController) {
+    this.pushPage = BornePage;
 
   }
   initialisation() {
@@ -21,24 +25,27 @@ export class HomePage {
     });
     loader.present();
     this.rest.initialisation().subscribe(response => {
-      console.log('response');
+      this.response = response;
+
+      console.log(response);
       setTimeout(() => {
         loader.dismiss();
         let toast = this.toastCtrl.create({
           message: 'Connection server successfully',
           duration: 3000,
           position: 'top',
-          cssClass: 'text-center'
         });
         toast.onDidDismiss(() => {
-          console.log('Dismissed toast');
+          console.log('OK');
         });
 
         toast.present();
-      }, 5000);
+      }, 3000);
 
     })
   }
+
+
   ionViewDidLoad() {
     this.initialisation();
   }
