@@ -9,12 +9,15 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { RestProvider } from '../providers/rest/rest';
 import { BornePage } from '../pages/borne/borne';
+import { CartProvider } from '../providers/cart/cart';
+import { CartPage } from '../pages/cart/cart';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    BornePage
+    BornePage,
+    CartPage
   ],
   imports: [
     BrowserModule,
@@ -25,14 +28,17 @@ import { BornePage } from '../pages/borne/borne';
   entryComponents: [
     MyApp,
     HomePage,
-    BornePage
+    BornePage,
+    CartPage
+    
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     RestProvider,
-    HttpClientModule
+    HttpClientModule,
+    CartProvider
   ]
 })
 export class AppModule {}

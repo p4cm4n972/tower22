@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import { ARTICLES } from '../borne/mock-articles';
-
+import { Article } from '../borne/article';
+import { CartPage } from '../cart/cart';
 /**
  * Generated class for the BornePage page.
  *
@@ -15,10 +16,19 @@ import { ARTICLES } from '../borne/mock-articles';
   templateUrl: 'borne.html',
 })
 export class BornePage {
-articles = ARTICLES;
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
+  articles = ARTICLES;
+  selectedArticle: Article;
 
+  constructor(public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController) {
+  }
+  onSelected(article: Article): void {
+    this.selectedArticle = article;
+    console.log(article);
+  }
+  openCart(){
+let modal = this.modalCtrl.create(CartPage);
+modal.present();
+  }
   ionViewDidLoad() {
     console.log('ionViewDidLoad BornePage');
   }

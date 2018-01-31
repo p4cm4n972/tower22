@@ -7,9 +7,9 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Bienvenue sur la borne de paiement </ion-title>
+    <ion-title>Tickets</ion-title>
     <ion-buttons end>
-      <button ion-button icon-only>
+      <button ion-button icon-only (click)="openCart()">
         <ion-icon name="cart"></ion-icon>
       </button>
     </ion-buttons>
@@ -19,7 +19,7 @@
 
 
 <ion-content padding>
-  <ion-list>
+  <!--<ion-list>
     <ion-item *ngFor="let article of articles">
       <ion-img width="80" height="80" [src]='article.logo'></ion-img>
       {{article.name}}
@@ -29,6 +29,16 @@
           <ion-icon name="add"></ion-icon>
         </button>
       </ion-buttons>
+    </ion-item>
+  </ion-list>-->
+  <ion-list >
+    <ion-item *ngFor="let article of articles" (click)="onSelected(article)">
+      <ion-thumbnail item-start>
+        <img [src]='article.logo'>
+      </ion-thumbnail>
+      <h2>{{article.name}}</h2>
+      <p>{{article.price | number:'2.2-5'}} €</p>
+      <button ion-button  item-end><ion-icon name="add"></ion-icon></button>
     </ion-item>
   </ion-list>
 </ion-content>
