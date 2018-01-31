@@ -1,47 +1,53 @@
 <ion-header>
-
   <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
     <ion-title>Cart</ion-title>
-    <ion-buttons end>
-      <button ion-button icon-only (click)="closeCart()">
-        <ion-icon name="close-circle"></ion-icon>
-      </button>
-    </ion-buttons>
   </ion-navbar>
-
 </ion-header>
-  <ion-content padding="'true'" class="has-header">
-      <div>
-          <p>Total 
-              <strong> &#8377; <!--{{total_amount}}--></strong>
-          </p>
-      </div>
-      <button  class="button button-positive button-block ">Check Out</button>
-  
-  <div ng-repeat="item in cart"   >
-    <div class="list card" >
-      <div class="item item-divider"><!-- {{item.cart_item_name}} --> </div>
-      <div class="item item-body">
-        <img  width="100%" height="auto" style="width: 100%; height: auto;">
-        <form class="list"></form>
-        <div>
-          <p><!-- {{item.cart_item_qty}} x &#8377; {{item.cart_item_price}} --> =
-            <strong> &#8377; <!-- {{ item.cart_item_qty *  item.cart_item_price  }} --></strong>
-          </p>
-        </div>
-        <div class="button-bar">
-          <button  class="button button-assertive button-block button-small icon ion-android-delete" ></button>
-          <button class="button button-stable button-clear button-block button-small icon ion-plus" ></button>
-          <button class="button button-stable button-clear button-block button-small"><!-- {{item.cart_item_qty}} --></button>
-          <button class="button button-stable button-clear button-block  icon ion-minus" ></button>
-        </div>
-      </div>
-    </div>
-  </div>
-  
 
-  
-  
-  
-  
-  </ion-content>
+
+<ion-content>
+<ion-card>  
+  	<ion-card-header>
+   Items
+  </ion-card-header>
+    <ion-card-content *ngIf="cartItems.length === 0">
+      Your cart is empty!
+    </ion-card-content>
+   <ion-list no-lines>
+     <ion-item *ngFor="let product of cartItems">
+    <ion-avatar item-left>
+      <img src="{{product.items.logo}}">
+    </ion-avatar>
+    <h2>{{product.items.name}} <b> {{product?.quantity}}</b></h2>
+    <div [ngSwitch]="product?.price_discount">
+    <p *ngSwitchCase="true">€ <span st>{{product.items.price}}</span> <span>{{product?.price_discount}}</span></p>
+    <p *ngSwitchDefault>€ <span >{{product.items.price}}</span> <span>{{product?.price_discount}}</span></p>
+    </div>
+    <div>
+    	<button primary large>
+		  <ion-icon name="add" (click)="increaseQuantity(i)"></ion-icon>
+		</button>
+		<button primary large>
+		<ion-icon name="remove" (click)="decreaseQuantity(i)"></ion-icon>
+		</button>
+    </div>
+  </ion-item>
+</ion-list>
+  <ion-card-content *ngIf="cartItems.length > 0">
+      <div>Total for this order is $ {{cartItems?.total}}</div>
+  </ion-card-content>
+ 
+    
+</ion-card>
+<ion-card>
+  <ion-card-content>
+  	
+   <button ion-button full 
+      (click)="proceedToCheckout()"
+      [disabled]="0 === cartItems.length">Checkout</button>
+    </ion-card-content>
+</ion-card>
+</ion-content>
