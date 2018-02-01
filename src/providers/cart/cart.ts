@@ -10,38 +10,35 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class CartProvider {
   cart = [];
-  adulte = [];
-  enfant = [];
-  groupe = [];
+   adulte =  0;
+   enfant = 0 ;
+   groupe = 0 ;
 
   constructor(public http: HttpClient) {
     console.log('Hello CartProvider Provider');
   }
   add(article) {
-    console.log(article.name);
-    switch(article.name) {
+    switch (article.name) {
       case 'ADULTE':
-      this.adulte.push({article});
-      break;
+        ++this.adulte;
+        break;
       case 'ENFANT':
-      this.enfant.push({article});
-      break;
+        ++this.enfant;
+        break;
 
       case 'GROUPE':
-      this.groupe.push({article});
-      break;
-      
+        ++this.groupe;
+        break;
+
     }
-    console.log(this.cart)
     return article;
   }
-  get(){
-    this.cart.push([
-    {adulte: this.adulte},
-    {enfant: this.enfant},
-    {groupe: this.groupe}]
-    )
-    console.log(this.cart.length);
-    return (this.adulte, this.enfant, this.groupe);
+  get() {
+    this.cart.push({
+      adulte : this.adulte,
+      enfant: this.enfant,
+      groupe: this.groupe
+    })
+    return (this.cart);
   }
 }

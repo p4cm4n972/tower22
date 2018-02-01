@@ -25,7 +25,6 @@ export class BornePage {
   }
   onSelected(article: Article): void {
     this.selectedArticle = article;
-    console.log(article)
     this.cart.add(article);
   }
   openCart() {
@@ -33,7 +32,7 @@ export class BornePage {
     modal.present();
   }
   ionViewDidLoad() {
-    console.log('ionViewDidLoad BornePage');
+    console.log('BornePage');
   }
 
 }

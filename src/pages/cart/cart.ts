@@ -16,7 +16,7 @@ import { CartProvider } from '../../providers/cart/cart';
   templateUrl: 'cart.html',
 })
 export class CartPage {
-cartItems;
+cartItems = [];
   constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController, public cart: CartProvider) {
   }
   closeCart(): void {
@@ -25,7 +25,7 @@ cartItems;
   ionViewDidLoad() {
     console.log('ionViewDidLoad CartPage');
     this.cartItems = this.cart.get();
-    console.log(this.cartItems.length);
+    console.log(this.cartItems);
     
   }
 
