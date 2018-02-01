@@ -6,6 +6,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { HomePage } from '../pages/home/home';
 import { BornePage } from '../pages/borne/borne';
 import { CartPage } from '../pages/cart/cart';
+import { OutOfServicePage } from '../pages/out-of-service/out-of-service';
+
 @Component({
   templateUrl: 'app.html'
 })
@@ -18,6 +20,7 @@ export class MyApp {
       { title: 'Home', component: HomePage },
       { title: 'Borne', component: BornePage },
       { title: 'Cart', component: CartPage },
+      { title: 'OOS', component: OutOfServicePage}
     ];
 
     platform.ready().then(() => {

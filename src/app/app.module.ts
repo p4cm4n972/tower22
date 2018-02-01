@@ -11,13 +11,15 @@ import { RestProvider } from '../providers/rest/rest';
 import { BornePage } from '../pages/borne/borne';
 import { CartProvider } from '../providers/cart/cart';
 import { CartPage } from '../pages/cart/cart';
+import { OutOfServicePage } from '../pages/out-of-service/out-of-service';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     BornePage,
-    CartPage
+    CartPage,
+    OutOfServicePage
   ],
   imports: [
     BrowserModule,
@@ -29,7 +31,8 @@ import { CartPage } from '../pages/cart/cart';
     MyApp,
     HomePage,
     BornePage,
-    CartPage
+    CartPage,
+    OutOfServicePage
     
   ],
   providers: [

@@ -1,4 +1,4 @@
-<ion-header>
+<p *ngFor="let items of cartItems; index as i">{{items[0].article}}</p><!--<ion-header>
   <ion-navbar>
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
@@ -17,14 +17,14 @@
       Your cart is empty!
     </ion-card-content>
    <ion-list no-lines>
-     <ion-item *ngFor="let product of cartItems">
+     <ion-item *ngFor="let product of cartItems; index as i">
     <ion-avatar item-left>
-      <img src="{{product.items.logo}}">
+      <img src="{{product.logo[i]}}">
     </ion-avatar>
-    <h2>{{product.items.name}} <b> {{product?.quantity}}</b></h2>
-    <div [ngSwitch]="product?.price_discount">
-    <p *ngSwitchCase="true">€ <span st>{{product.items.price}}</span> <span>{{product?.price_discount}}</span></p>
-    <p *ngSwitchDefault>€ <span >{{product.items.price}}</span> <span>{{product?.price_discount}}</span></p>
+    <h2>{{product.name[i]}} <b> {{product.items[i].length}}</b></h2>
+    <div [ngSwitch]="product.price_discount">
+    <p *ngSwitchCase="true">€ <span st>{{product[i].price}}</span> <span>{{product.price_discount}}</span></p>
+    <p *ngSwitchDefault>€ <span >{{product[i].price}}</span> <span>{{product.price_discount}}</span></p>
     </div>
     <div>
     	<button primary large>
@@ -37,7 +37,7 @@
   </ion-item>
 </ion-list>
   <ion-card-content *ngIf="cartItems.length > 0">
-      <div>Total for this order is $ {{cartItems?.total}}</div>
+      <div>Total for this order is $ {{cartItems.total}}</div>
   </ion-card-content>
  
     
@@ -50,4 +50,4 @@
       [disabled]="0 === cartItems.length">Checkout</button>
     </ion-card-content>
 </ion-card>
-</ion-content>
+</ion-content>-->

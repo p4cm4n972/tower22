@@ -25,7 +25,8 @@ export class BornePage {
   }
   onSelected(article: Article): void {
     this.selectedArticle = article;
-    this.cart.add(article)
+    console.log(article)
+    this.cart.add(article);
   }
   openCart() {
     let modal = this.modalCtrl.create(CartPage);

@@ -11,3 +11,10 @@ video {
   background-size: cover;
   transition: 1s opacity;
 }
+h2 {
+  color: red;
+  text-align: center
+}
+h2 > span {
+  font-style: italic;
+}
