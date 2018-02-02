@@ -2,13 +2,9 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ViewController } from 'ionic-angular/navigation/view-controller';
 import { CartProvider } from '../../providers/cart/cart';
-<<<<<<< HEAD
-import { Items } from './items';
-=======
 import { ToastController } from 'ionic-angular/components/toast/toast-controller';
 import { BornePage } from '../borne/borne';
 import { AlertController } from 'ionic-angular/components/alert/alert-controller';
->>>>>>> da2eb2f8
 
 /**
  * Generated class for the CartPage page.
@@ -23,13 +19,8 @@ import { AlertController } from 'ionic-angular/components/alert/alert-controller
   templateUrl: 'cart.html',
 })
 export class CartPage {
-<<<<<<< HEAD
-private cartItems: Items[] = [];
-  constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController, public cart: CartProvider) {
-=======
   cartItems = [];
   constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController, public cart: CartProvider, public toastCtrl: ToastController, public alertCtrl: AlertController) {
->>>>>>> da2eb2f8
   }
   closeCart(): void {
     this.viewCtrl.dismiss();
@@ -64,14 +55,8 @@ private cartItems: Items[] = [];
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad CartPage');
-<<<<<<< HEAD
-    this.cartItems = this.cart.get();
-    console.log(this.cartItems);
-    
-=======
     this.cartItems = this.cart.get()
 
->>>>>>> da2eb2f8
   }
 
 }
