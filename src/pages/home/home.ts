@@ -5,7 +5,10 @@ import { RestProvider } from '../../providers/rest/rest';
 import { ToastController } from 'ionic-angular/components/toast/toast-controller';
 import { BornePage } from '../borne/borne';
 import { ModalController } from 'ionic-angular/components/modal/modal-controller';
+<<<<<<< HEAD
 import { OutOfServicePage } from '../out-of-service/out-of-service';
+=======
+>>>>>>> da2eb2f8
 
 
 
@@ -44,7 +47,11 @@ export class HomePage {
           });
 
           toast.present();
+<<<<<<< HEAD
         }, 3000);
+=======
+        }, 2000);
+>>>>>>> da2eb2f8
       } else {
         console.log('OUT OF SERVICE !');
         loader.dismiss();

@@ -8,6 +8,7 @@ video {
     height: auto;
     z-index: -100;
     transform: translateX(-50%) translateY(-50%);
+<<<<<<< HEAD
   background-size: cover;
   transition: 1s opacity;
 }
@@ -18,3 +19,8 @@ h2 {
 h2 > span {
   font-style: italic;
 }
+=======
+    background-size: cover;
+    transition: 1s opacity;
+}
+>>>>>>> da2eb2f8
