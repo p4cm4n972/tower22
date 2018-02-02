@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ViewController } from 'ionic-angular/navigation/view-controller';
 import { CartProvider } from '../../providers/cart/cart';
+import { Items } from './items';
 
 /**
  * Generated class for the CartPage page.
@@ -16,7 +17,7 @@ import { CartProvider } from '../../providers/cart/cart';
   templateUrl: 'cart.html',
 })
 export class CartPage {
-cartItems = [];
+private cartItems: Items[] = [];
   constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController, public cart: CartProvider) {
   }
   closeCart(): void {
