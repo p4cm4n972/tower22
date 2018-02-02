@@ -19,21 +19,12 @@
    <ion-list no-lines>
      <ion-item >
     <ion-avatar item-left>
-<<<<<<< HEAD
-      <img src="../../assets/imgs/adulte.png">
-    </ion-avatar>
-    <h2>ADULTE <b> x {{cartItems.adulte}} </b></h2>
-    <div>
-    
-    <p>€ <span >10</span> <span></span></p>
-=======
       <img src="{{product.logo}}">
     </ion-avatar>
     <h2>{{product.name}} <b> {{product?.quantity}}</b></h2>
     <div [ngSwitch]="product?.price_discount">
     <p *ngSwitchCase="true">€ <span st>{{product.price}}</span> <span>{{product?.price_discount}}</span></p>
     <p *ngSwitchDefault>€ <span >{{product.price}}</span> <span>{{product?.price_discount}}</span></p>
->>>>>>> da2eb2f8
     </div>
     <div>
     	<button primary large>
