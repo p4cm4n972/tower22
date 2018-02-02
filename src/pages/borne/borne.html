@@ -12,6 +12,7 @@
       <button ion-button icon-only (click)="openCart()">
         <ion-icon name="cart"></ion-icon>
       </button>
+      <ion-badge item-end [color]="inChart ? 'danger' : 'primary'">{{cartItems.length}}</ion-badge>
     </ion-buttons>
   </ion-navbar>
 

@@ -20,12 +20,15 @@ export class BornePage {
   articles = ARTICLES;
   selectedArticle: Article;
   response: Object
+  cartItems = [];
+  inChart: boolean = true;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController, public cart: CartProvider) {
   }
   onSelected(article: Article): void {
     this.selectedArticle = article;
-    this.cart.add(article)
+    this.cart.add(article);
+    this.inChart = false;
   }
   openCart() {
     let modal = this.modalCtrl.create(CartPage);
@@ -33,6 +36,8 @@ export class BornePage {
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad BornePage');
+    this.cartItems = this.cart.get()
+
   }
 
 }

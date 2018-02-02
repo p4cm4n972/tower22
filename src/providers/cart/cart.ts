@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Article } from '../../pages/borne/article';
 
 /*
   Generated class for the CartProvider provider.
@@ -9,19 +10,26 @@ import { Injectable } from '@angular/core';
 */
 @Injectable()
 export class CartProvider {
-  cart = [];
+  cart: any[] = [];
 
   constructor(public http: HttpClient) {
     console.log('Hello CartProvider Provider');
   }
   add(article) {
-    console.log(article.name);
-    this.cart.push({items : article})
-    console.log(this.cart)
+    this.cart.push(article);
+    this.cart.map(data => {
+      console.log(data);
+    });
+    localStorage.cart = JSON.stringify(this.cart);
     return article;
   }
-  get(){
+  get() {
     console.log(this.cart);
     return this.cart;
+  }
+  checkOut() {
+    return this.http.post('http://10.1.1.77:9010/ws/paiement', { "TransactionNumber": "44545646565", "Montant": "36.00" }).subscribe(data => {
+      console.log(data);
+    })
   }
 }

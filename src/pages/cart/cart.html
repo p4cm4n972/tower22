@@ -19,12 +19,12 @@
    <ion-list no-lines>
      <ion-item *ngFor="let product of cartItems">
     <ion-avatar item-left>
-      <img src="{{product.items.logo}}">
+      <img src="{{product.logo}}">
     </ion-avatar>
-    <h2>{{product.items.name}} <b> {{product?.quantity}}</b></h2>
+    <h2>{{product.name}} <b> {{product?.quantity}}</b></h2>
     <div [ngSwitch]="product?.price_discount">
-    <p *ngSwitchCase="true">€ <span st>{{product.items.price}}</span> <span>{{product?.price_discount}}</span></p>
-    <p *ngSwitchDefault>€ <span >{{product.items.price}}</span> <span>{{product?.price_discount}}</span></p>
+    <p *ngSwitchCase="true">€ <span st>{{product.price}}</span> <span>{{product?.price_discount}}</span></p>
+    <p *ngSwitchDefault>€ <span >{{product.price}}</span> <span>{{product?.price_discount}}</span></p>
     </div>
     <div>
     	<button primary large>
