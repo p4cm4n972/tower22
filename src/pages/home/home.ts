@@ -22,7 +22,7 @@ export class HomePage {
   }
   initialisation() {
     let loader = this.loadingCtrl.create({
-      content: "Please wait..."
+      content: "Initialisation en cours, veuillez patientez..."
     });
     loader.present();
     this.rest.initialisation().subscribe(response => {
