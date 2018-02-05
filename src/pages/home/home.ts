@@ -30,7 +30,7 @@ export class HomePage {
       //error => this.error = error;
 
       console.log(response);
-      if (this.response.ProductMode === 'outOfService') {
+      if (this.response.ProductMode !== 'outOfService') {
 
         setTimeout(() => {
           loader.dismiss();
