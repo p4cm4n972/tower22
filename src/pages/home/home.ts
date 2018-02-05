@@ -26,7 +26,8 @@ export class HomePage {
     });
     loader.present();
     this.rest.initialisation().subscribe(response => {
-      this.response = response;
+      this.response = response,
+      //error => this.error = error;
 
       console.log(response);
       if (this.response.ProductMode === 'outOfService') {
