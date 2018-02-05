@@ -16,6 +16,7 @@ export class HomePage {
   params: Object;
   pushPage: any;
   response: any;
+  outOfService: boolean = true;
   constructor(public navCtrl: NavController, public loadingCtrl: LoadingController, private rest: RestProvider, private toastCtrl: ToastController, public modalCtrl: ModalController) {
     this.pushPage = BornePage;
 
@@ -30,8 +31,8 @@ export class HomePage {
       //error => this.error = error;
 
       console.log(response);
-      if (this.response.ProductMode !== 'outOfService') {
-
+      if ((this.response.ProductMode).toUpperCase() === 'INSERVICE') {
+        this.outOfService = false;
         setTimeout(() => {
           loader.dismiss();
           let toast = this.toastCtrl.create({

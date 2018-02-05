@@ -1,15 +1,13 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Tower 22 : {{response?.equipmentType}}
+      Bienvenue
     </ion-title>
     <ion-buttons end>
         <button ion-button icon-only >
-          version: {{response?.version}}
+          <ion-icon name="radio-button-off" [color]="outOfService ? 'danger' : 'primary'"></ion-icon>
         </button>
-        <button ion-button icon-only >
-            app: {{response?.application}}
-          </button>
+        
       </ion-buttons>
   </ion-navbar>
 </ion-header>
@@ -22,8 +20,8 @@
   <img class="button" src="../../assets/imgs/icone-piscine.png" width="200px" (click)='openApp()'>
 </ion-content>
 
-<ion-footer no-border>
+<!--<ion-footer no-border>
     <ion-toolbar>
         <ion-title>ProductId: {{response?.ProductId}}</ion-title>
     </ion-toolbar>
-</ion-footer>
+</ion-footer>-->

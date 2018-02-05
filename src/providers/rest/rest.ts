@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { HttpHeaders } from '@angular/common/http';
-import { tokenKey } from '@angular/core/src/view/util';
 
 /*
   Generated class for the RestProvider provider.
