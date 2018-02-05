@@ -14,7 +14,7 @@ private uri = 'http://localhost:9010/ws/heartbeat';
 private httpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin':'http://localhost:9010/*'
+    'Access-Control-Allow-Origin':'https://tower22.herokuapp.com'
   })
 };
   constructor(public http: HttpClient) {
