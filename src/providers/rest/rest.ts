@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { HttpHeaders } from '@angular/common/http';
+import { tokenKey } from '@angular/core/src/view/util';
 
 /*
   Generated class for the RestProvider provider.
@@ -14,7 +15,7 @@ private uri = 'http://localhost:9010/ws/heartbeat';
 private httpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin':'https://tower22.herokuapp.com'
+    'Access-Control-Allow-Origin' : '*'
   })
 };
   constructor(public http: HttpClient) {
@@ -22,7 +23,7 @@ private httpOptions = {
   }
 
   initialisation() {
-    return this.http.get(this.uri)
+    return this.http.get(this.uri, this.httpOptions)
   }
 }
 
