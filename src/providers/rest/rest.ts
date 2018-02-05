@@ -22,7 +22,7 @@ private httpOptions = {
   }
 
   initialisation() {
-    return this.http.get(this.uri, this.httpOptions)
+    return this.http.get(this.uri)
   }
 }
 

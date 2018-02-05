@@ -31,7 +31,7 @@ export class HomePage {
       //error => this.error = error;
 
       console.log(response);
-      if ((this.response.ProductMode).toUpperCase() === 'INSERVICE') {
+      if (this.response.ProductMode === 'inService') {
         this.outOfService = false;
         setTimeout(() => {
           loader.dismiss();
