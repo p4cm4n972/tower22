@@ -28,9 +28,9 @@ export class HomePage {
     loader.present();
     this.rest.initialisation().subscribe(response => {
       this.response = response,
-      //error => this.error = error;
+        //error => this.error = error;
 
-      console.log(response);
+        console.log(response);
       if (this.response.ProductMode === 'inService') {
         this.outOfService = false;
         setTimeout(() => {
@@ -41,7 +41,8 @@ export class HomePage {
             position: 'top',
           });
           toast.onDidDismiss(() => {
-            console.log('OK');
+            let modal = this.modalCtrl.create(BornePage)
+            modal.present();
           });
 
           toast.present();
@@ -64,8 +65,7 @@ export class HomePage {
   }
 
   openApp() {
-    let modal = this.modalCtrl.create(BornePage)
-    modal.present();
+
   }
 
 

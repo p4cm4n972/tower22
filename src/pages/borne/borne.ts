@@ -22,22 +22,37 @@ export class BornePage {
   response: Object
   cartItems = [];
   inChart: boolean = true;
+  cartE= [];
+  total: number= 0;
+  cart: number= 0;
+  
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController, public cart: CartProvider) {
+  
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController, public cartPvd: CartProvider) {
+    
   }
-  onSelected(article: Article): void {
+  add(article: Article): void {
     this.selectedArticle = article;
-    this.cart.add(article);
     this.inChart = false;
+    article.qty++;
+    this.cart++;
+    this.total = this.total + article.price;
   }
-  openCart() {
-    let modal = this.modalCtrl.create(CartPage);
-    modal.present();
+  remove(article: Article): void {
+    this.selectedArticle = article;
+    article.qty--;
+    this.cart--;
+    this.total = this.total - article.price;
+    
+  }
+  
+  checkOut(total) {
+    console.log(total);
+    this.cartPvd.checkOut();
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad BornePage');
-    this.cartItems = this.cart.get()
-
-  }
+    }
 
 }

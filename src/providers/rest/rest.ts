@@ -10,7 +10,7 @@ import { HttpHeaders } from '@angular/common/http';
 */
 @Injectable()
 export class RestProvider {
-private uri = 'http://localhost:9010/ws/heartbeat';
+private uri = 'http://10.1.1.77:9010/ws/heartbeat';
 private httpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json',

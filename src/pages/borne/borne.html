@@ -12,7 +12,7 @@
       <button ion-button icon-only (click)="openCart()">
         <ion-icon name="cart"></ion-icon>
       </button>
-      <ion-badge item-end [color]="inChart ? 'danger' : 'primary'">{{cartItems.length}}</ion-badge>
+      <ion-badge item-end [color]="inChart ? 'danger' : 'primary'">{{cart}}</ion-badge>
     </ion-buttons>
   </ion-navbar>
 
@@ -20,26 +20,29 @@
 
 
 <ion-content padding>
-  <!--<ion-list>
+  <ion-list>
     <ion-item *ngFor="let article of articles">
-      <ion-img width="80" height="80" [src]='article.logo'></ion-img>
-      {{article.name}}
-      <ion-icon name="pricetag" item-end> {{article.price | number:'2.2-5'}} €</ion-icon>
-      <ion-buttons item-end>
-        <button ion-button icon-only (click)="addTable()">
-          <ion-icon name="add"></ion-icon>
-        </button>
-      </ion-buttons>
-    </ion-item>
-  </ion-list>-->
-  <ion-list >
-    <ion-item *ngFor="let article of articles" (click)="onSelected(article)">
       <ion-thumbnail item-start>
         <img [src]='article.logo'>
       </ion-thumbnail>
       <h2>{{article.name}}</h2>
       <p>{{article.price | number:'2.2-5'}} €</p>
-      <button ion-button  item-end><ion-icon name="add"></ion-icon></button>
+      <button ion-button item-end color="light" class="qty">{{article?.qty}}</button>
+      <button ion-button item-end (click)="add(article)">
+        <ion-icon name="add"></ion-icon>
+      </button>
+      <button ion-button item-end (click)="remove(article)" color="danger">
+        <ion-icon name="remove"></ion-icon>
+      </button>
     </ion-item>
   </ion-list>
+  <ion-chip item-end>
+    <ion-icon name="logo-euro"></ion-icon>
+    <ion-label>{{total}}</ion-label>
+  </ion-chip>
+  <button ion-button item-end (click)="checkOut(total)">
+  <ion-chip color="secondary">
+    <ion-label color="dark">PAYER</ion-label>
+  </ion-chip>
+  </button>
 </ion-content>

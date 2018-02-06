@@ -17,9 +17,7 @@ export class CartProvider {
   }
   add(article) {
     this.cart.push(article);
-    this.cart.map(data => {
-      console.log(data);
-    });
+    
     localStorage.cart = JSON.stringify(this.cart);
     return article;
   }
@@ -28,7 +26,7 @@ export class CartProvider {
     return this.cart;
   }
   checkOut() {
-    return this.http.post('http://localhost:9010/ws/paiement', { "TransactionNumber": "44545646565", "Montant": "36.00" }).subscribe(data => {
+    return this.http.post('http://10.1.1.77:9010/ws/paiement', { "TransactionNumber": "44545646565", "AmountToPay": "36.00" }).subscribe(data => {
       console.log(data);
     })
   }
