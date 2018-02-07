@@ -36,17 +36,32 @@ export class BornePage {
   add(article: Article): void {
     this.selectedArticle = article;
     this.inChart = false;
-    article.qty++;
-    this.cart++;
-    this.total = this.total + article.price;
+    if (article.name === 'GROUPE') {
+      article.qty = article.qty + 5;
+      this.cart = this.cart + 5;
+      this.total = this.total + (article.price * 5);
+    } else {
+
+      article.qty++;
+      this.cart++;
+      this.total = this.total + article.price;
+    }
+
     this.pay = false;
   }
   remove(article: Article): void {
     this.selectedArticle = article;
     if (article.qty > 0) {
-      article.qty--;
-      this.cart--;
-      this.total = this.total - article.price;
+      if (article.name === 'GROUPE') {
+        article.qty = article.qty - 5;
+        this.cart = this.cart - 5;
+        this.total = this.total - (article.price * 5);
+      } else {
+
+        article.qty--;
+        this.cart--;
+        this.total = this.total - article.price;
+      }
     }
     console.log(this.cart);
 

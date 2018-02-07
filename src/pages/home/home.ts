@@ -42,7 +42,7 @@ export class HomePage {
     this.rest.initialisation().subscribe(response => {
       this.response = response;
       console.log(response);
-      if (this.response.ProductMode !== 'inService') {
+      if (this.response.ProductMode === 'inService') {
         this.outOfService = false;
         setTimeout(() => {
           loader.dismiss();
@@ -52,7 +52,7 @@ export class HomePage {
             position: 'top',
           });
           toast.onDidDismiss(() => {
-            let modal = this.modalCtrl.create(BornePage)
+            let modal = this.modalCtrl.create(BornePage,{},{enableBackdropDismiss:false})
             modal.present();
           });
 
