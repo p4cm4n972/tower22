@@ -15,10 +15,7 @@
       <ion-badge item-end [color]="inChart ? 'danger' : 'primary'">{{cart}}</ion-badge>
     </ion-buttons>
   </ion-navbar>
-
 </ion-header>
-
-
 <ion-content padding>
   <ion-list>
     <ion-item *ngFor="let article of articles">
@@ -31,7 +28,7 @@
       <button ion-button item-end (click)="add(article)">
         <ion-icon name="add"></ion-icon>
       </button>
-      <button ion-button item-end (click)="remove(article)" color="danger">
+      <button ion-button item-end (click)="remove(article)" color="danger" >
         <ion-icon name="remove"></ion-icon>
       </button>
     </ion-item>
@@ -40,7 +37,7 @@
     <ion-icon name="logo-euro"></ion-icon>
     <ion-label>{{total}}</ion-label>
   </ion-chip>
-  <button ion-button item-end (click)="checkOut(total)">
+  <button ion-button item-end clear (click)="checkOut(total)" [disabled]='cart == 0 ? true : false'>
   <ion-chip color="secondary">
     <ion-label color="dark">PAYER</ion-label>
   </ion-chip>

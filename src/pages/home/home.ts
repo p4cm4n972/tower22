@@ -16,22 +16,33 @@ export class HomePage {
   params: Object;
   pushPage: any;
   response: any;
+  error: string;
   outOfService: boolean = true;
   constructor(public navCtrl: NavController, public loadingCtrl: LoadingController, private rest: RestProvider, private toastCtrl: ToastController, public modalCtrl: ModalController) {
     this.pushPage = BornePage;
 
   }
+  //OUT OF SERVICE : ERROR:ERROR HTTP or RESPONSE: OUTOFSERVICE 
+  oos() {
+    console.log('OUT OF SERVICE !');
+    let loaderOOS = this.loadingCtrl.create({
+      spinner: 'bubbles',
+      content: `
+<div><h2><span>Sorry...</span><br>TEMPORARILY OUT OF SERVICE</h2></div>
+`
+    });
+    loaderOOS.present();
+  }
+  //INITIALISATION CONNECTION HEARTBEAT
   initialisation() {
     let loader = this.loadingCtrl.create({
       content: "Initialisation en cours, veuillez patientez..."
     });
     loader.present();
     this.rest.initialisation().subscribe(response => {
-      this.response = response,
-        //error => this.error = error;
-
-        console.log(response);
-      if (this.response.ProductMode === 'inService') {
+      this.response = response;
+      console.log(response);
+      if (this.response.ProductMode !== 'inService') {
         this.outOfService = false;
         setTimeout(() => {
           loader.dismiss();
@@ -48,25 +59,19 @@ export class HomePage {
           toast.present();
         }, 2000);
       } else {
-        console.log('OUT OF SERVICE !');
         loader.dismiss();
-        /*let modal = this.modalCtrl.create(OutOfServicePage, {}, {enableBackdropDismiss: false} );
-        modal.present();*/
-        let loaderOOS = this.loadingCtrl.create({
-          spinner: 'bubbles',
-          content: `
-    <div><h2><span>Sorry...</span><br>TEMPORARILY OUT OF SERVICE</h2></div>
-    `
-        });
-        loaderOOS.present();
+        this.oos();
       }
-
-    })
+    },
+      error => {
+      this.error = <any>error;
+        console.log("http failure");
+        this.oos();
+      }
+    )
   }
 
-  openApp() {
 
-  }
 
 
   ionViewDidLoad() {

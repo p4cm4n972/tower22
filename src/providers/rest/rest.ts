@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { HttpHeaders } from '@angular/common/http';
 
 /*
   Generated class for the RestProvider provider.
@@ -10,13 +9,8 @@ import { HttpHeaders } from '@angular/common/http';
 */
 @Injectable()
 export class RestProvider {
-private uri = 'http://localhost:9010/ws/heartbeat';
-private httpOptions = {
-  headers: new HttpHeaders({
-    'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin' : '*'
-  })
-};
+private uri = 'http://localhost:5000/ws/heartbeat';
+
   constructor(public http: HttpClient) {
     console.log('RestProvider Provider');
   }
