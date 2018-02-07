@@ -93,7 +93,6 @@ export class BornePage {
 
   }
   ionViewDidLoad() {
-    console.log(this.is);
   }
 
 }
