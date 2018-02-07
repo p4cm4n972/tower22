@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Article } from '../../pages/borne/article';
 
 /*
   Generated class for the CartProvider provider.
@@ -26,7 +25,7 @@ export class CartProvider {
     return this.cart;
   }
   checkOut() {
-    return this.http.post('http://10.1.1.77:9010/ws/paiement', { "TransactionNumber": "44545646565", "AmountToPay": "36.00" }).subscribe(data => {
+    return this.http.post('http://localhost:9010/ws/paiement', { "TransactionNumber": "44545646565", "AmountToPay": "36.00" }).subscribe(data => {
       console.log(data);
     })
   }

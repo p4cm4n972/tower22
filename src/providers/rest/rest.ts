@@ -9,7 +9,7 @@ import { Injectable } from '@angular/core';
 */
 @Injectable()
 export class RestProvider {
-private uri = 'http://localhost:5000/ws/heartbeat';
+private uri = 'http://localhost:9010/ws/heartbeat';
 
   constructor(public http: HttpClient) {
     console.log('RestProvider Provider');

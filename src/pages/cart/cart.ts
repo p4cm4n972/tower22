@@ -3,7 +3,6 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ViewController } from 'ionic-angular/navigation/view-controller';
 import { CartProvider } from '../../providers/cart/cart';
 import { ToastController } from 'ionic-angular/components/toast/toast-controller';
-import { BornePage } from '../borne/borne';
 import { AlertController } from 'ionic-angular/components/alert/alert-controller';
 
 /**

@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController, AlertController, ToastController } from 'ionic-angular';
 import { ARTICLES } from '../borne/mock-articles';
 import { Article } from '../borne/article';
-import { CartPage } from '../cart/cart';
 import { CartProvider } from '../../providers/cart/cart';
 /**
  * Generated class for the BornePage page.
