@@ -37,11 +37,12 @@ export class BornePage {
   }
   oos() {
     console.log('OUT OF SERVICE !');
-    const loaderOOS = this.loadingCtrl.create({
+    let loaderOOS = this.loadingCtrl.create({
       spinner: 'bubbles',
       content: `
 <div><h2><span>Sorry...</span><br>TEMPORARILY OUT OF SERVICE</h2></div>
-`
+`,
+duration: 2000
     });
     loaderOOS.present();
   }
@@ -124,7 +125,7 @@ export class BornePage {
 
 
 
-  ionViewDidLoad(loaderOOS) {
+  ionViewDidLoad() {
     setInterval(() => {
       this.rest.initialisation().subscribe(response => {
         this.response = response;
@@ -133,7 +134,7 @@ export class BornePage {
           this.oos();
   
         } else {
-          loaderOOS.dismiss()
+          this.navCtrl.push(HomePage);
         }},
         error => {
           this.error = <any>error;
