@@ -67,6 +67,20 @@ export class HomePage {
       this.error = <any>error;
         console.log("http failure");
         this.oos();
+        setInterval(() => {
+          this.rest.initialisation().subscribe(response => {
+            this.response = response;
+            console.log(response);
+            if (this.response.ProductMode === 'inService') {
+              this.initialisation();
+      
+            }},
+            error => {
+              this.error = <any>error;
+              console.log("http failure");
+              this.oos();
+            });
+          },3000)
       }
     )
   }
