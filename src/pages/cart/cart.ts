@@ -24,7 +24,7 @@ export class CartPage {
   closeCart(): void {
     this.viewCtrl.dismiss();
   }
-  proceedToCheckout() {
+  proceedToCheckout(total) {
     let confirme = this.alertCtrl.create({
       title: 'Proceed payment',
       buttons: [
@@ -43,7 +43,7 @@ export class CartPage {
             });
             toast.present();
         
-            this.cart.checkOut();
+            this.cart.checkOut(total);
           }
         }
       ]

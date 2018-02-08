@@ -25,10 +25,7 @@ app.all('/', function (req, res, next) {
  });
 
 app.use(express.static('www'));
-app.set('port', process.env.PORT || 9010);
+app.set('port', process.env.PORT || 5000);
 app.listen(app.get('port'), function () {
   console.log('Express server listening on port ' + app.get('port'));
 });
-app.get('/ws/heartbeat', function(req, res, next) {
-  res.send({ProductMode: 'inService'});
-})

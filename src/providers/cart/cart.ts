@@ -24,8 +24,9 @@ export class CartProvider {
     console.log(this.cart);
     return this.cart;
   }
-  checkOut() {
-    return this.http.post('http://localhost:9010/ws/paiement', { "TransactionNumber": "44545646565", "AmountToPay": "36.00" }).subscribe(data => {
+  checkOut(total) {
+    console.log(total);
+    return this.http.post('http://localhost:9010/ws/paiement', { "TransactionNumber": "44545646565", "AmountToPay": total }).subscribe(data => {
       console.log(data);
     })
   }

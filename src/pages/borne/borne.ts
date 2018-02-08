@@ -81,14 +81,16 @@ export class BornePage {
           },
           {
             text: 'Agree',
-            handler: () => {
+            handler: (total) => {
+    console.log(this.total);
+              
               let toast = this.toastCtrl.create({
                 message: 'Veuillez suivre les instructions sur le terminal de paiement',
                 position: 'middle'
               });
               toast.present();
 
-              this.cartPvd.checkOut();
+              this.cartPvd.checkOut(this.total);
             }
           }
         ]
