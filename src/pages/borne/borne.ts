@@ -4,6 +4,7 @@ import { ARTICLES } from '../borne/mock-articles';
 import { Article } from '../borne/article';
 import { CartProvider } from '../../providers/cart/cart';
 import { RestProvider } from '../../providers/rest/rest';
+import { HomePage } from '../home/home';
 /**
  * Generated class for the BornePage page.
  *
@@ -36,7 +37,7 @@ export class BornePage {
   }
   oos() {
     console.log('OUT OF SERVICE !');
-    let loaderOOS = this.loadingCtrl.create({
+    const loaderOOS = this.loadingCtrl.create({
       spinner: 'bubbles',
       content: `
 <div><h2><span>Sorry...</span><br>TEMPORARILY OUT OF SERVICE</h2></div>
@@ -123,7 +124,7 @@ export class BornePage {
 
 
 
-  ionViewDidLoad() {
+  ionViewDidLoad(loaderOOS) {
     setInterval(() => {
       this.rest.initialisation().subscribe(response => {
         this.response = response;
@@ -131,6 +132,8 @@ export class BornePage {
         if (this.response.ProductMode !== 'inService') {
           this.oos();
   
+        } else {
+          loaderOOS.dismiss()
         }},
         error => {
           this.error = <any>error;
