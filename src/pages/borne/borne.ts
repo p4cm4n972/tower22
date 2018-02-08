@@ -1,10 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController, AlertController, ToastController, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController, AlertController, ToastController } from 'ionic-angular';
 import { ARTICLES } from '../borne/mock-articles';
 import { Article } from '../borne/article';
 import { CartProvider } from '../../providers/cart/cart';
-import { RestProvider } from '../../providers/rest/rest';
-import { HomePage } from '../home/home';
 /**
  * Generated class for the BornePage page.
  *
@@ -20,31 +18,19 @@ import { HomePage } from '../home/home';
 export class BornePage {
   articles = ARTICLES;
   selectedArticle: Article;
-  response;
+  response: Object
   cartItems = [];
   inChart: boolean = true;
   cartE = [];
   total: number = 0;
   cart: number = 0;
   pay: boolean = true;
-  error;
 
 
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController, public cartPvd: CartProvider, public toastCtrl: ToastController, public alertCtrl: AlertController, private rest: RestProvider, public loadingCtrl: LoadingController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController, public cartPvd: CartProvider, public toastCtrl: ToastController, public alertCtrl: AlertController) {
 
-  }
-  oos() {
-    console.log('OUT OF SERVICE !');
-    let loaderOOS = this.loadingCtrl.create({
-      spinner: 'bubbles',
-      content: `
-<div><h2><span>Sorry...</span><br>TEMPORARILY OUT OF SERVICE</h2></div>
-`,
-duration: 2000
-    });
-    loaderOOS.present();
   }
 
   add(article: Article): void {
@@ -96,8 +82,8 @@ duration: 2000
           {
             text: 'Agree',
             handler: (total) => {
-              console.log(this.total);
-
+    console.log(this.total);
+              
               let toast = this.toastCtrl.create({
                 message: 'Veuillez suivre les instructions sur le terminal de paiement',
                 position: 'middle'
@@ -119,29 +105,10 @@ duration: 2000
       toast.present();
 
     }
+
+
   }
-
-  heartbeat = () =>{}
-
-
-
   ionViewDidLoad() {
-    setInterval(() => {
-      this.rest.initialisation().subscribe(response => {
-        this.response = response;
-        console.log(response);
-        if (this.response.ProductMode !== 'inService') {
-          this.oos();
-  
-        } else {
-          this.navCtrl.push(HomePage);
-        }},
-        error => {
-          this.error = <any>error;
-          console.log("http failure");
-          this.oos();
-        });
-      },3000)
   }
 
 }

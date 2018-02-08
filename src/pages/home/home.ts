@@ -32,6 +32,7 @@ export class HomePage {
 `
     });
     loaderOOS.present();
+    setInterval(this.initialisation(), 2000)
   }
   //INITIALISATION CONNECTION HEARTBEAT
   initialisation() {
@@ -52,8 +53,13 @@ export class HomePage {
             position: 'top',
           });
           toast.onDidDismiss(() => {
-            let modal = this.modalCtrl.create(BornePage,{},{enableBackdropDismiss:false})
-            modal.present();
+            /*let modal = this.modalCtrl.create(BornePage,{},{enableBackdropDismiss:false})
+            modal.present();*/
+            let loader = this.loadingCtrl.create({
+              content: "Toucher l'écran pour commencer",
+            });
+            loader.present();
+
           });
 
           toast.present();
@@ -64,25 +70,15 @@ export class HomePage {
       }
     },
       error => {
-      this.error = <any>error;
+        this.error = <any>error;
         console.log("http failure");
         this.oos();
-        setInterval(() => {
-          this.rest.initialisation().subscribe(response => {
-            this.response = response;
-            console.log(response);
-            if (this.response.ProductMode === 'inService') {
-              this.initialisation();
-      
-            }},
-            error => {
-              this.error = <any>error;
-              console.log("http failure");
-              this.oos();
-            });
-          },3000)
       }
     )
+  };
+  onTouch() {
+    let modal = this.modalCtrl.create(BornePage, {}, { enableBackdropDismiss: false })
+    modal.present();
   }
 
 
