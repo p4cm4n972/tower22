@@ -21,9 +21,7 @@ data;
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad OutOfServicePage');
-    this.rest.heartBeat(this.data) {
-
-    }
+    
   }
 
 }

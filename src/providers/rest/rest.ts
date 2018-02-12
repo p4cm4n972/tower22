@@ -10,7 +10,7 @@ import { Observable } from 'rxjs/Observable';
 */
 @Injectable()
 export class RestProvider {
-private uri = 'http://10.1.1.77:9010/ws/heartbeat';
+private uri = 'http://localhost:9010/ws/heartbeat';
 
   constructor(public http: HttpClient) {
     console.log('RestProvider Provider');
@@ -21,8 +21,7 @@ private uri = 'http://10.1.1.77:9010/ws/heartbeat';
   }
 
   heartBeat():Observable<any> {
-    return this.http.get('http://localhost:5000/api/OutOfServicePage')
-    )
+    return this.http.get('http://localhost:9010/api/OutOfServicePage')
   }
 }
 
