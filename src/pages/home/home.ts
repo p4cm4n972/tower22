@@ -5,6 +5,7 @@ import { RestProvider } from '../../providers/rest/rest';
 import { ToastController } from 'ionic-angular/components/toast/toast-controller';
 import { BornePage } from '../borne/borne';
 import { ModalController } from 'ionic-angular/components/modal/modal-controller';
+import { OutOfServicePage } from '../out-of-service/out-of-service';
 
 
 
@@ -25,14 +26,14 @@ export class HomePage {
   //OUT OF SERVICE : ERROR:ERROR HTTP or RESPONSE: OUTOFSERVICE 
   oos() {
     console.log('OUT OF SERVICE !');
-    let loaderOOS = this.loadingCtrl.create({
+    /*let loaderOOS = this.loadingCtrl.create({
       spinner: 'bubbles',
       content: `
 <div><h2><span>Sorry...</span><br>TEMPORARILY OUT OF SERVICE</h2></div>
 `
     });
-    loaderOOS.present();
-    setInterval(this.initialisation(), 2000)
+    loaderOOS.present();*/
+    this.navCtrl.push(OutOfServicePage)
   }
   //INITIALISATION CONNECTION HEARTBEAT
   initialisation() {
@@ -53,13 +54,8 @@ export class HomePage {
             position: 'top',
           });
           toast.onDidDismiss(() => {
-            /*let modal = this.modalCtrl.create(BornePage,{},{enableBackdropDismiss:false})
-            modal.present();*/
-            let loader = this.loadingCtrl.create({
-              content: "Toucher l'écran pour commencer",
-            });
-            loader.present();
-
+            let modal = this.modalCtrl.create(BornePage,{},{enableBackdropDismiss:false})
+            modal.present();
           });
 
           toast.present();
@@ -70,15 +66,11 @@ export class HomePage {
       }
     },
       error => {
-        this.error = <any>error;
+      this.error = <any>error;
         console.log("http failure");
         this.oos();
       }
     )
-  };
-  onTouch() {
-    let modal = this.modalCtrl.create(BornePage, {}, { enableBackdropDismiss: false })
-    modal.present();
   }
 
 

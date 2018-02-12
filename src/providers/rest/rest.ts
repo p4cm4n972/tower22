@@ -18,5 +18,11 @@ private uri = 'http://10.1.1.77:9010/ws/heartbeat';
   initialisation() {
     return this.http.get(this.uri)
   }
+
+  heartBeat(data) {
+    return this.http.get('http://localhost:5000').subscribe(
+      console.log(data);
+    )
+  }
 }
 

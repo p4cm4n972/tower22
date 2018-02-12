@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { RestProvider } from '../../providers/rest/rest';
 
 /**
  * Generated class for the OutOfServicePage page.
@@ -14,12 +15,15 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'out-of-service.html',
 })
 export class OutOfServicePage {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+data;
+  constructor(public navCtrl: NavController, public navParams: NavParams, public rest: RestProvider) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad OutOfServicePage');
+    this.rest.heartBeat(this.data) {
+
+    }
   }
 
 }
