@@ -4,7 +4,6 @@ import { ARTICLES } from '../borne/mock-articles';
 import { Article } from '../borne/article';
 import { CartProvider } from '../../providers/cart/cart';
 import { RestProvider } from '../../providers/rest/rest';
-import { LOCALE_DATA } from '@angular/common/src/i18n/locale_data';
 import { Subscription } from 'rxjs/Subscription';
 import { HomePage } from '../home/home';
 import { OutOfServicePage } from '../out-of-service/out-of-service';

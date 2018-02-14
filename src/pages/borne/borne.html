@@ -24,22 +24,20 @@
       </ion-thumbnail>
       <h2>{{article.name}}</h2>
       <p>{{article.price | number:'2.2-5'}} €</p>
-      <button ion-button item-end (click)="add(article)" class="buttonPM">
+      <button  item-end (click)="add(article)" class="buttonP">
         <ion-icon name="add"></ion-icon>
       </button>
-      <button ion-button item-end color="light" class="qty">{{article?.qty}}</button>
-      <button ion-button item-end (click)="remove(article)" color="danger" class="buttonPM">
+      <button  item-end color="light" class="qty"><h1>{{article?.qty}}</h1></button>
+      <button  item-end (click)="remove(article)" color="danger" class="buttonM">
         <ion-icon name="remove"></ion-icon>
       </button>
     </ion-item>
   </ion-list>
   <ion-chip item-end class="customBtnPay">
     <ion-icon name="logo-euro"></ion-icon>
-    <ion-label>{{total}}</ion-label>
+    <ion-label><h1>{{total}}</h1></ion-label>
   </ion-chip>
-  <button ion-button item-end clear (click)="checkOut(total)" [disabled]='cart == 0 ? true : false' >
-  <ion-chip color="secondary" class="customBtnPay">
-    <ion-label color="dark">PAYER</ion-label>
-  </ion-chip>
+  <button  item-end clear (click)="checkOut(total)" [disabled]='cart == 0 ? true : false' class="buttonC">
+  <h1>PAYER</h1>
   </button>
 </ion-content>
