@@ -3,18 +3,11 @@ const app = express();
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-//WEBSOCKET SOCKET.IO
-const io = require('socket.io');
-const ioClient = require('socket.io-client');
+const server = require('http').createServer(app);
+const io = require('socket.io')(server);
 
-
-function emitMessage(socket) {
-  socket.emit('my other event', { my: 'data' });
-  setTimeout(function () { emitMessage(socket) }, 1000);
-}
-
-const socket = ioClient.connect('http://10.1.1.77:9010');
-emitMessage(socket);
+const fs = require('fs');
+const PDFDocument = require('pdfkit');
 
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({
@@ -36,13 +29,39 @@ app.all('/', function (req, res, next) {
   next();
 });
 
-app.post('/api/OutOfServicePage', function( req, res) {
-  console.log((req.body.response));
-res.send({response: req.body.response})
+
+
+app.post('/ws/heartbeat', function( req, res) {
+  console.log(('serverSides: ' + req.body.Mode));
+  io.emit('data',{data : req.body.Mode});
+res.json('heartbeat');
+  
+  //res.json('ok STATUS !');
 })
 
 app.use(express.static('www'));
 app.set('port', process.env.PORT || 5000);
-app.listen(app.get('port'), function () {
+server.listen(app.get('port'), function () {
   console.log('Express server listening on port ' + app.get('port'));
 });
+
+io.on('connection', socket => {
+  console.log(`Socket ${socket.id} added`);
+  socket.on('invoice', data => {
+    console.log(data);
+    doc = new PDFDocument();
+    doc.text('TransactionNumber ' + data.transaction);
+    doc.text('Amount ' + data.total);
+    
+    doc.pipe(fs.createWriteStream('../../BorneProduit/Receipts/invoice-' + data.transaction + '.pdf'))
+    doc.end();
+  });
+  
+  app.post('/ws/status', function( req, res) {
+    console.log(('serverSides: ' + req.body.response));
+    socket.emit('clientdata',{data : req.body.response});
+  res.json('STATUS OK')
+  })
+
+
+})

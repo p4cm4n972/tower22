@@ -7,6 +7,8 @@ import { HomePage } from '../pages/home/home';
 import { BornePage } from '../pages/borne/borne';
 import { CartPage } from '../pages/cart/cart';
 import { OutOfServicePage } from '../pages/out-of-service/out-of-service';
+import { InitPage } from '../pages/init/init';
+//
 
 @Component({
   templateUrl: 'app.html'
@@ -20,8 +22,10 @@ export class MyApp {
       { title: 'Home', component: HomePage },
       { title: 'Borne', component: BornePage },
       { title: 'Cart', component: CartPage },
-      { title: 'OOS', component: OutOfServicePage}
+      { title: 'OOS', component: OutOfServicePage},
+      { title: 'Init', component: InitPage}
     ];
+    
 
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.

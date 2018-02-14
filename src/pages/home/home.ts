@@ -6,6 +6,7 @@ import { ToastController } from 'ionic-angular/components/toast/toast-controller
 import { BornePage } from '../borne/borne';
 import { ModalController } from 'ionic-angular/components/modal/modal-controller';
 import { OutOfServicePage } from '../out-of-service/out-of-service';
+import { InitPage } from '../init/init';
 
 
 
@@ -18,65 +19,18 @@ export class HomePage {
   pushPage: any;
   response: any;
   error: string;
-  outOfService: boolean = true;
+  outOfService: boolean;
   constructor(public navCtrl: NavController, public loadingCtrl: LoadingController, private rest: RestProvider, private toastCtrl: ToastController, public modalCtrl: ModalController) {
     this.pushPage = BornePage;
 
   }
-  //OUT OF SERVICE : ERROR:ERROR HTTP or RESPONSE: OUTOFSERVICE 
-  oos() {
-    console.log('OUT OF SERVICE !');
-    /*let loaderOOS = this.loadingCtrl.create({
-      spinner: 'bubbles',
-      content: `
-<div><h2><span>Sorry...</span><br>TEMPORARILY OUT OF SERVICE</h2></div>
-`
-    });
-    loaderOOS.present();*/
-    this.navCtrl.push(OutOfServicePage)
-  }
-  //INITIALISATION CONNECTION HEARTBEAT
-  initialisation() {
-    let loader = this.loadingCtrl.create({
-      content: "Initialisation en cours, veuillez patientez..."
-    });
-    loader.present();
-    this.rest.initialisation().subscribe(response => {
-      this.response = response;
-      console.log(response);
-      if (this.response.ProductMode === 'inService') {
-        this.outOfService = false;
-        setTimeout(() => {
-          loader.dismiss();
-          let toast = this.toastCtrl.create({
-            message: 'Connection server successfully',
-            duration: 3000,
-            position: 'top',
-          });
-          toast.onDidDismiss(() => {
-            let modal = this.modalCtrl.create(BornePage,{},{enableBackdropDismiss:false})
-            modal.present();
-          });
-
-          toast.present();
-        }, 2000);
-      } else {
-        loader.dismiss();
-        this.oos();
-      }
-    },
-      error => {
-      this.error = <any>error;
-        console.log("http failure");
-        this.oos();
-      }
-    )
-  }
+  
 
 
 
 
   ionViewDidLoad() {
-    this.initialisation();
+    let modal = this.modalCtrl.create(BornePage,{outOfService:false},{enableBackdropDismiss:false})
+            modal.present();
   }
 }

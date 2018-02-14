@@ -38,12 +38,13 @@ export class CartPage {
           text: 'Agree',
           handler: () => {
             let toast = this.toastCtrl.create({
-              message: 'Veuillez suivre les instructions sur le terminal de paiement',
+              message: 'Veuillez suivre les instructions sur le terminal de paiement ...',
               position: 'middle'
             });
             toast.present();
-        
-            this.cart.checkOut(total);
+            let transaction = Math.floor((Math.random()* 99999999999) + 1);
+            let invoice = {transaction, total}
+            this.cart.checkOut(invoice);
           }
         }
       ]

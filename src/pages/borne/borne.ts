@@ -3,6 +3,11 @@ import { IonicPage, NavController, NavParams, ModalController, AlertController, 
 import { ARTICLES } from '../borne/mock-articles';
 import { Article } from '../borne/article';
 import { CartProvider } from '../../providers/cart/cart';
+import { RestProvider } from '../../providers/rest/rest';
+import { LOCALE_DATA } from '@angular/common/src/i18n/locale_data';
+import { Subscription } from 'rxjs/Subscription';
+import { HomePage } from '../home/home';
+import { OutOfServicePage } from '../out-of-service/out-of-service';
 /**
  * Generated class for the BornePage page.
  *
@@ -25,12 +30,13 @@ export class BornePage {
   total: number = 0;
   cart: number = 0;
   pay: boolean = true;
+  data;
+  sub: Subscription;
+  
 
 
 
-
-  constructor(public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController, public cartPvd: CartProvider, public toastCtrl: ToastController, public alertCtrl: AlertController) {
-
+  constructor(public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController, public cartPvd: CartProvider, public toastCtrl: ToastController, public alertCtrl: AlertController, public rest: RestProvider) {
   }
 
   add(article: Article): void {
@@ -89,8 +95,9 @@ export class BornePage {
                 position: 'middle'
               });
               toast.present();
-
-              this.cartPvd.checkOut(this.total);
+              let transaction = Math.floor((Math.random()* 99999999999) + 1);
+              let invoice = { transaction, total:this.total}
+              this.cartPvd.checkOut(invoice);
             }
           }
         ]
@@ -108,7 +115,25 @@ export class BornePage {
 
 
   }
+  status(data) {
+    if(data === 'inService'){
+   this.navCtrl.push(HomePage);
+   let modal = this.modalCtrl.create(BornePage,{},{enableBackdropDismiss:false})
+             modal.present();
+ } else {
+   this.navCtrl.push(OutOfServicePage)
+ }
+    
+  }
+  
   ionViewDidLoad() {
+    this.sub = this.rest.getStatus()
+    .subscribe(data => {
+      this.data = data;
+      console.log(data);
+      this.status(data);
+      
+    })
   }
 
 }

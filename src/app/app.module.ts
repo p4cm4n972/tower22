@@ -12,6 +12,7 @@ import { BornePage } from '../pages/borne/borne';
 import { CartProvider } from '../providers/cart/cart';
 import { CartPage } from '../pages/cart/cart';
 import { OutOfServicePage } from '../pages/out-of-service/out-of-service';
+import { InitPage } from '../pages/init/init';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { OutOfServicePage } from '../pages/out-of-service/out-of-service';
     HomePage,
     BornePage,
     CartPage,
-    OutOfServicePage
+    OutOfServicePage,
+    InitPage
   ],
   imports: [
     BrowserModule,
@@ -32,7 +34,8 @@ import { OutOfServicePage } from '../pages/out-of-service/out-of-service';
     HomePage,
     BornePage,
     CartPage,
-    OutOfServicePage
+    OutOfServicePage,
+    InitPage
     
   ],
   providers: [
@@ -41,7 +44,7 @@ import { OutOfServicePage } from '../pages/out-of-service/out-of-service';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     RestProvider,
     HttpClientModule,
-    CartProvider
+    CartProvider,
   ]
 })
 export class AppModule {}

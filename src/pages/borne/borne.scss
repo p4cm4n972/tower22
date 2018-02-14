@@ -4,3 +4,30 @@ page-borne {
 .qty {
     border: 2px solid black
 }
+.customBtnPay {
+width: 150px;
+height: 50px;
+border-radius: 40px;
+text-align: center;
+}
+.buttonPM{
+    width: 75px;
+}
+.button {
+    font-size-adjust: none;
+}
+modal-wrapper {
+    width: 80%;
+    height: 80%;
+  }
+  
+  
+  
+  @media only screen and (min-height: 0px) and (min-width: 0px) {
+    .modal-wrapper {
+      top: 10%;
+      left: 10%;
+      width: 80%;
+      height: 80%;
+    }
+  }
