@@ -28,16 +28,8 @@ export class CartProvider {
   constructor(public http: HttpClient) {
     console.log('Hello CartProvider Provider');
   }
-  add(article) {
-    this.cart.push(article);
-    
-    localStorage.cart = JSON.stringify(this.cart);
-    return article;
-  }
-  get() {
-    console.log(this.cart);
-    return this.cart;
-  }
+  
+ 
 
   
   

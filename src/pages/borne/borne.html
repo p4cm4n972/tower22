@@ -10,7 +10,7 @@
     <ion-title>Tickets</ion-title>
     <ion-buttons end>
       <button ion-button icon-only (click)="openCart()">
-        <ion-icon name="cart"></ion-icon>
+          <img src="../../assets/imgs/cart.png" wi>
       </button>
       <ion-badge item-end [color]="inChart ? 'danger' : 'primary'">{{cart}}</ion-badge>
     </ion-buttons>
@@ -20,24 +20,24 @@
   <ion-list>
     <ion-item *ngFor="let article of articles">
       <ion-thumbnail item-start>
-        <img [src]='article.logo'>
+        <img [src]='article.logo' width="160px" height="160px">
       </ion-thumbnail>
-      <h2>{{article.name}}</h2>
-      <p>{{article.price | number:'2.2-5'}} €</p>
+      <h1>{{article.name}}</h1>
+      <h1>{{article.price | number:'2.2-5'}} €</h1>
       <button  item-end (click)="add(article)" class="buttonP">
-        <ion-icon name="add"></ion-icon>
+          <img src="../../assets/imgs/bb.png">
       </button>
       <button  item-end color="light" class="qty"><h1>{{article?.qty}}</h1></button>
-      <button  item-end (click)="remove(article)" color="danger" class="buttonM">
-        <ion-icon name="remove"></ion-icon>
+      <button  item-end (click)="remove(article)"  class="buttonM">
+        <img src="../../assets/imgs/bv.png">
       </button>
     </ion-item>
+  <ion-item>
+      <button  item-end color="light" class="qty"><h1>Total {{total}} €</h1></button>
+        
+        <button  item-end clear (click)="checkOut(total)" [disabled]='cart == 0 ? true : false' class="buttonC">
+        <h1>PAYER</h1>
+        </button>
+  </ion-item>
   </ion-list>
-  <ion-chip item-end class="customBtnPay">
-    <ion-icon name="logo-euro"></ion-icon>
-    <ion-label><h1>{{total}}</h1></ion-label>
-  </ion-chip>
-  <button  item-end clear (click)="checkOut(total)" [disabled]='cart == 0 ? true : false' class="buttonC">
-  <h1>PAYER</h1>
-  </button>
 </ion-content>

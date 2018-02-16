@@ -59,7 +59,7 @@ io.on('connection', socket => {
   
   app.post('/ws/status', function( req, res) {
     console.log(('serverSides: ' + req.body.response));
-    socket.emit('clientdata',{data : req.body.response});
+    //socket.emit('clientdata',{data : req.body.response});
   res.json('STATUS OK')
   })
 

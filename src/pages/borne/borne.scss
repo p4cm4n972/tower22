@@ -1,5 +1,21 @@
+.content-md {
+    background-color: transparent;
+  }
+  .item-md {
+      background-color: transparent;
+  }
+  .toolbar {
+    background-color: transparent;
+      
+  }
+  h1, h2, h3{
+    color: white;
+    font: 1.5em Georgia, serif; 
+  }
 .qty {
-    border: 2px solid black
+    border: 2px solid black;
+    width: 150px;
+    height: 150px;
 }
 .customBtnPay {
 width: 150px;
@@ -10,12 +26,15 @@ text-align: center;
 .buttonP{
     width: 150px;
     height: 150px;
-    background-color: blue;
+    background-color:transparent;
+    border-radius: 50%;
+    
 }
 .buttonM{
     width: 150px;
     height: 150px;
-    background-color:red;
+    background-color:transparent;
+    border-radius: 50%;
     
 }
 .buttonC{

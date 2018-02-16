@@ -11,3 +11,50 @@ video {
     background-size: cover;
     transition: 1s opacity;
 }
+.select-md .select-placeholder  {
+    color: white;
+    font-size: 2em;
+}
+.alert-title {
+    color: black;
+}
+.alert-md  {
+    opacity: 0.5;
+}
+.item-inner > ion-icon{
+    font-size: 3rem;
+}
+.button-md, .item-md .item-button {
+    width: 230px;
+    height: 100px;
+}
+.select-icon-inner{
+    background-color: red;
+    font-size: 4rem;
+    width: 50px;
+}
+.select-md .select-icon .select-icon-inner {
+visibility: hidden;
+}
+.button-inner {
+    font-size: 2rem;
+}
+.select-text {
+    color: white;
+    font-size: 2rem;
+    text-align: center;
+}
+button {
+    width: 150px;
+    height: 50px;
+    background-color: transparent;
+}
+[icon-only] ion-icon {
+    font-size: 6em;
+}
+ion-icon {
+    font-size: 5em;
+}
+.item-inner > ion-icon {
+    font-size: 6rem;
+}

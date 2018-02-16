@@ -17,7 +17,11 @@ import { InitPage } from '../pages/init/init';
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
+    HomePage,
+    BornePage,
+    CartPage,
+    OutOfServicePage,
+    InitPage
   ],
   imports: [
     BrowserModule,

@@ -1,24 +1,126 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Bienvenue
+      Bienvenue au Centre APlusquatique 
     </ion-title>
+    <ion-buttons end>
+        <button ion-button icon-only (click)="openCart()">
+            <img src="../../assets/imgs/cart.png" width="60px">
+        </button>
+        <ion-badge item-end [color]="inChart ? 'danger' : 'primary'">{{cart}}</ion-badge>
+      </ion-buttons>
     <ion-buttons end>
         <button ion-button icon-only >
           <ion-icon name="radio-button-off" [color]="outOfService ? 'danger' : 'primary'"></ion-icon>
         </button>
         
       </ion-buttons>
+      
   </ion-navbar>
 </ion-header>
 
 <ion-content padding class="card-background-page" on-touch="onTouch()">
     <video poster="../../assets/imgs/bkg.jpg" playsinline autoplay muted loop width="100%" height="900">
-      <source src="../../assets/imgs/video02.mp4" type="video/mp4">
+      <source src="../../assets/imgs/video.mp4" type="video/mp4">
     </video>
-  <!--<img class="button" src="../../assets/imgs/icone-piscine.png" width="200px" [navPush]="pushPage" [navParams]="params">-->
-  
-  
+    <form [formGroup]="item" (ngSubmit)="add(item.value)">
+        <ion-item no-lines>
+          <ion-label ><h1>VEUILLEZ SELECTIONNER VOTRE TICKET ET LA QUANTITE, MERCI .</h1></ion-label>
+          </ion-item>
+
+
+          
+          <ion-item no-lines>
+          <button clear item-end icon-only ><ion-icon color="primary" clear name="arrow-dropdown-circle"></ion-icon></button>
+            
+          <ion-label><h1>Tickets (Adulte, enfant ou groupe):</h1></ion-label>
+            
+          <ion-select [selectOptions]="optionTicket"  placeholder="Choisir ticket" formControlName="article">
+            <ion-option [value]="article.name"  *ngFor="let article of articles">{{article.name}} - {{article.price}}€</ion-option>
+          </ion-select >
+          
+        </ion-item>
+
+
+
+
+
+        <ion-item >
+            <ion-label><h1>Quantité :</h1></ion-label>
+          
+          <ion-select [selectOptions]="optionQty" placeholder="Choisir quantité" formControlName="qty">
+            <ion-option value=1>1</ion-option>
+            <ion-option value=2>2</ion-option>
+            <ion-option value=3>3</ion-option>
+            <ion-option value=4>4</ion-option>
+            <ion-option value=5>5</ion-option>
+            <ion-option value=6>6</ion-option>
+            <ion-option value=7>7</ion-option>
+            <ion-option value=8>8</ion-option>
+            <ion-option value=9>9</ion-option>
+            <ion-option value=10>10</ion-option>
+          </ion-select>
+          <button item-end icon-only ><ion-icon color="primary" name="arrow-dropdown-circle"></ion-icon></button>          
+        </ion-item>
+        <ion-item>
+          <button ion-button type="submit" center color="secondary" [disabled]="!item.valid">Ajouter au panier</button>
+        </ion-item>
+      </form>
+        
+        <br>
+        <hr>
+        <div *ngIf="cart !== 0">
+        <ion-title>Votre commande : </ion-title>
+
+
+        <ion-item no-lines *ngIf="articles[0].qty !== 0"><h2> Ticket(s) {{articles[0].name}} {{articles[0].qty}}</h2>
+          <button  item-end (click)="more(articles[0])" >
+              <ion-icon name="add-circle"></ion-icon>
+        </button>
+        <button  item-end color="light"><h1>{{articles[0].qty}}</h1></button>
+        
+        <button  item-end (click)="less(articles[0])" >
+          <ion-icon name="remove-circle"></ion-icon>
+        </button>
+        <ion-icon color="danger" item-end name="trash" (click)="remove(articles[0])"></ion-icon>
+      </ion-item>
+
+        <ion-item no-lines *ngIf="articles[1].qty !== 0"><h2> Ticket(s) {{articles[1].name}} {{articles[1].qty}}</h2>
+          <button  item-end (click)="more(articles[1])" >
+              <ion-icon name="add-circle"></ion-icon>
+        </button>
+        <button  item-end color="light"><h1>{{articles[1].qty}}</h1></button>
+        
+        <button  item-end (click)="less(articles[1])" >
+          <ion-icon name="remove-circle"></ion-icon>
+        </button>
+
+
+
+          <ion-icon color="danger" item-end name="trash" (click)="remove(articles[1])"></ion-icon>
+        </ion-item>
+
+
+        <ion-item no-lines *ngIf="articles[2].qty !== 0"><h2> Ticket(s) {{articles[2].name}} {{articles[2].qty}}</h2>
+          <button  item-end (click)="more(articles[2])" >
+              <ion-icon name="add-circle"></ion-icon>
+        </button>
+        <button  item-end color="light"><h1>{{articles[2].qty}}</h1></button>
+        
+        <button  item-end (click)="less(articles[2])" >
+          <ion-icon name="remove-circle"></ion-icon>
+        </button>
+          <ion-icon color="danger" item-end name="trash" (click)="remove(articles[2])"></ion-icon>
+        </ion-item>
+
+
+
+        <ion-item><h2>Total de votre commande : {{total}} €</h2></ion-item>
+        <ion-item no-lines>
+          <button ion-button  center color="default" (click)="checkOut()">Valider votre panier</button>
+        </ion-item>
+      </div>
+
 </ion-content>
 
 <!--<ion-footer no-border>
