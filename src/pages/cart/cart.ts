@@ -54,8 +54,8 @@ export class CartPage {
     
   }
   ionViewDidLoad() {
-    console.log('ionViewDidLoad CartPage');
-    this.cartItems = this.cart.get()
+    console.log('CartPage');
+    //this.cartItems = this.cart.get()
 
   }
 

@@ -30,7 +30,9 @@ export class HomePage {
   optionQty: {title: string, cssClass: string};
   optionTicket: {title: string, cssClass: string};
   public item;
-  cart: number = 0
+  cart: number = 0;
+  invoice;
+  toast;
 
   constructor( public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController, public cartPvd: CartProvider, private formBuilder: FormBuilder, public toastCtrl: ToastController, public alertCtrl: AlertController, public rest: RestProvider) {
   this.optionQty = {
@@ -138,27 +140,28 @@ export class HomePage {
 
   checkOut(total) {
       let confirme = this.alertCtrl.create({
-        title: 'Proceed payment',
+        title: 'Payer : ' + this.total + '€',
         buttons: [
           {
-            text: 'Disagree',
+            text: 'Annuler',
             handler: () => {
               console.log('proceed payment avort');
             }
           },
           {
-            text: 'Agree',
+            text: 'Valider',
             handler: (total) => {
     console.log(this.total);
               
-              let toast = this.toastCtrl.create({
-                message: 'Veuillez suivre les instructions sur le terminal de paiement',
-                position: 'middle'
+              const toast = this.toastCtrl.create({
+                message: 'Veuillez suivre les instructions sur le terminal de paiement...',
+                position: 'middle',
+                duration: 10000
               });
               toast.present();
               let transaction = Math.floor((Math.random()* 99999999999) + 1);
-              let invoice = { transaction, total:this.total}
-              this.cartPvd.checkOut(invoice);
+             this.invoice = { transaction, total:this.total}
+              this.cartPvd.checkOut(this.invoice);
             }
           }
         ]
@@ -170,10 +173,45 @@ export class HomePage {
   status(data) {
     if(data === 'inService'){
    this.navCtrl.push(HomePage);
-   let modal = this.modalCtrl.create(BornePage,{},{enableBackdropDismiss:false})
+   let modal = this.modalCtrl.create(HomePage,{},{enableBackdropDismiss:false})
              modal.present();
+            } else if(data === 'info paiement') {
+   let toastOk = this.toastCtrl.create({
+     message: 'Paiement accepté',
+     position: 'middle',
+     duration: 10000
+     
+     
+   });
+   toastOk.present();
  } else {
-   this.navCtrl.push(OutOfServicePage)
+  let alert = this.alertCtrl.create({
+    title: 'Incident paiement',
+   buttons: [
+    {
+      text: 'Annuler',
+      handler: () => {
+        console.log('proceed payment avort');
+      }
+    },
+    {
+      text: 'Réessayer',
+      handler: (total) => {
+        
+        let toast = this.toastCtrl.create({
+          message: 'Veuillez suivre les instructions sur le terminal de paiement...',
+          position: 'middle',
+          duration: 10000  
+        });
+        toast.present();
+        
+        this.cartPvd.checkOut(this.invoice);
+      }
+    }
+  ],
+enableBackdropDismiss:false
+  });
+  alert.present();
  }
     
   }

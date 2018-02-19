@@ -58,3 +58,14 @@ ion-icon {
 .item-inner > ion-icon {
     font-size: 6rem;
 }
+.toast-md .toast-wrapper {
+    max-width: 1000px;
+}
+.toast-container .toast-message {
+    font-size: 2em;
+}
+button .alert-md .alert-button-group {
+    justify-content: flex-start;
+    width: 0px;
+
+}

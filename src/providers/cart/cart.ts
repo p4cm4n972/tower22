@@ -23,21 +23,14 @@ export class CartProvider {
     this.socket.emit('invoice',invoice);
     return this.http.post('http://10.1.1.77:9010/ws/paiement', invoice);
   }
+
   
   
   constructor(public http: HttpClient) {
     console.log('Hello CartProvider Provider');
   }
-  add(article) {
-    this.cart.push(article);
-    
-    localStorage.cart = JSON.stringify(this.cart);
-    return article;
-  }
-  get() {
-    console.log(this.cart);
-    return this.cart;
-  }
+  
+  
 
   
   

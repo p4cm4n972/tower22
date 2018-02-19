@@ -24,7 +24,10 @@ export class RestProvider {
     console.log('GET')
     this.socket = socketIo('http://localhost:5000');
     this.socket.on('clientdata', (res)=>{
-  this.observer.next(res.data)
+    this.observer.next(res.data)
+});
+    this.socket.on('infoPaiement', (res)=>{
+    this.observer.next(res.data)
 });
 return this.createObservable();
 }
