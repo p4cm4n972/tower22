@@ -24,7 +24,7 @@ export class CartPage {
   closeCart(): void {
     this.viewCtrl.dismiss();
   }
-  proceedToCheckout(total) {
+  proceedToCheckout(amount) {
     let confirme = this.alertCtrl.create({
       title: 'Proceed payment',
       buttons: [
@@ -42,8 +42,8 @@ export class CartPage {
               position: 'middle'
             });
             toast.present();
-            let transaction = Math.floor((Math.random()* 99999999999) + 1);
-            let invoice = {transaction, total}
+            let transactionNumber = Math.floor((Math.random()* 99999999999) + 1);
+            let invoice = {transactionNumber, amount}
             this.cart.checkOut(invoice);
           }
         }

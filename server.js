@@ -43,10 +43,10 @@ server.listen(app.get('port'), function () {
   console.log('Express server listening on port ' + app.get('port'));
 });
 //STATUS
-app.post('/ws/status', function( req, res) {
+/*app.post('/ws/status', function( req, res) {
   console.log(('serverSides: ' + JSON.stringify(req.body)));
 res.json('STATUS OK')
-})
+})*/
 
 
 //SOCKET CONNECTION
@@ -54,19 +54,18 @@ io.on('connection', socket => {
   console.log(`Socket ${socket.id} added`);
   socket.on('invoice', data => {
     console.log(data);
-    doc = new PDFDocument();
-    doc.text('TransactionNumber ' + data.transaction);
-    doc.text('Amount ' + data.total);
-    
+    doc = new PDFDocument({page_width: 300});
+    doc.text('TransactionNumber ' + data.transaction, {width: 300, align: 'center'});
+    doc.text('Amount ' + data.total, {width: 300, align: 'center'});
     doc.pipe(fs.createWriteStream('../../BorneProduit/Receipts/invoice-' + data.transaction + '.pdf'))
     doc.end();
   });
-  
-  /*app.post('/ws/status', function( req, res) {
+  //STATUS
+  app.post('/ws/status', function( req, res) {
     console.log(('serverSideSocket: ' + req.body));
-    socket.emit('clientdata',{data : req.body.response});
+    socket.emit('clientdata',{data : req.body});
   res.json('STATUS OK')
-  })*/
+  })
 //PAYMENT
 app.post('/ws/paiement', function( req, res) {
   console.log(('info paiement: ' + JSON.stringify(req.body)));
