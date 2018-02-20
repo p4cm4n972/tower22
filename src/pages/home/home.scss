@@ -53,7 +53,7 @@ button {
     font-size: 6em;
 }
 ion-icon {
-    font-size: 5em;
+    font-size: 6em;
 }
 .item-inner > ion-icon {
     font-size: 6rem;
@@ -68,4 +68,7 @@ button .alert-md .alert-button-group {
     justify-content: flex-start;
     width: 0px;
 
+}
+ion-badge {
+    font-size: 4rem;
 }
