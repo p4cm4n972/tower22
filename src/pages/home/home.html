@@ -38,7 +38,7 @@
       </button>
 
       <ion-label>
-        <h1>Tickets (Adulte, enfant ou groupe):</h1>
+        <h1>TICKETS (Adulte, enfant ou groupe):</h1>
       </ion-label>
 
       <ion-select [selectOptions]="optionTicket" placeholder="Choisir ticket" formControlName="article">
@@ -57,7 +57,7 @@
 
     <ion-item no-lines>
       <ion-label>
-        <h1>Quantité :</h1>
+        <h1>QUANTITE :</h1>
       </ion-label>
 
       <ion-select [selectOptions]="optionQty" placeholder="Choisir quantité" formControlName="qty">
@@ -76,8 +76,9 @@
         <ion-icon color="primary" name="arrow-dropdown-circle"></ion-icon>
       </button>
     </ion-item>
-    <ion-item no-lines>
-      <button ion-button type="submit" center color="secondary" [disabled]="!item.valid" class="buttonHome">Ajouter au panier</button>
+    <br>
+    <ion-item no-lines margin-top>
+      <button item-end ion-button type="submit" center color="secondary" [disabled]="!item.valid" class="buttonHome">Ajouter au panier</button>
     </ion-item>
   </form>
 
@@ -114,9 +115,6 @@
       <button item-end (click)="less(articles[1])">
         <ion-icon name="remove-circle"></ion-icon>
       </button>
-
-
-
       <ion-icon color="danger" item-end name="trash" (click)="remove(articles[1])"></ion-icon>
     </ion-item>
 

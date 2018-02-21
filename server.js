@@ -62,10 +62,10 @@ io.on('connection', socket => {
   });
   //STATUS
   app.post('/ws/status', function( req, res) {
-    console.log(('serverSideSocket: ' + req.body));
+    console.log(('serverSideSocket: ' + JSON.stringify(req.body)));
     socket.emit('clientdata',{data : req.body});
-  res.json('STATUS OK')
-  })
+  res.json('STATUS OK');
+  });
 //PAYMENT
 app.post('/ws/paiement', function( req, res) {
   console.log(('info paiement: ' + JSON.stringify(req.body)));
@@ -73,6 +73,9 @@ app.post('/ws/paiement', function( req, res) {
     data : req.body.response
   })
   res.json('info paiement');
+});
+socket.on('disconnect', function () {
+  io.emit('user disconnected');
 });
 
 })
