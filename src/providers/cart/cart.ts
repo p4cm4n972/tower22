@@ -1,6 +1,5 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
 import * as socketIo from 'socket.io-client';
 
 import { Socket } from '../../app/ws';

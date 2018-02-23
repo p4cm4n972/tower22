@@ -5,7 +5,6 @@ import 'rxjs/add/operator/catch';
 import * as socketIo from 'socket.io-client';
 import { Observable } from 'rxjs/Observable';
 import { Observer } from 'rxjs/Observer';
-import { map } from 'rxjs/operators';
 import { Socket } from '../../app/ws';
 
 

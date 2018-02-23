@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController, AlertController, ToastController, LoadingController } from 'ionic-angular';
+import { NavController, NavParams, ModalController, AlertController, ToastController } from 'ionic-angular';
 import { ARTICLES } from '../borne/mock-articles';
 import { Article } from '../borne/article';
 import { CartProvider } from '../../providers/cart/cart';
 import { RestProvider } from '../../providers/rest/rest';
 import { Subscription } from 'rxjs/Subscription';
-import { BornePage } from '../borne/borne';
 import { Validators, FormBuilder } from '@angular/forms';
 
 
