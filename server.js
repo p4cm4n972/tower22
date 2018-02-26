@@ -24,7 +24,7 @@ app.use(function (req, res, next) {
 });
 
 app.all('/', function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", "http://localhost");
+  res.header("Access-Control-Allow-Origin", "http://localhost:9010");
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
   next();
 });
