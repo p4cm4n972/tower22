@@ -1,5 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import { Observable } from 'rxjs/Observable';
 import * as socketIo from "socket.io-client";
 
 import { Socket } from "../../app/ws";
@@ -22,7 +23,7 @@ export class CartProvider {
   checkOut(invoice) {
     console.log(invoice);
     return this.http
-      .post("http://10.1.1.128:9010/ws/payment", JSON.stringify(invoice)).subscribe();
+      .post("http://10.1.1.128:9010/ws/payment", JSON.stringify(invoice));
   }
   dataticket() {
     console.log("Print Ticket");

@@ -163,7 +163,7 @@ export class HomePage {
             toast.present();
             let TransactionNumber = Math.floor((Math.random() * 99999999999) + 1);
             this.invoice = { TransactionNumber, AmountToPay: this.total }
-            this.cartPvd.checkOut(this.invoice);
+            this.cartPvd.checkOut(this.invoice).subscribe();
           }
         }
       ]
