@@ -23,7 +23,7 @@ export class CartProvider {
   checkOut(invoice) {
     console.log(invoice);
     return this.http
-      .post("localhost:9010/ws/payment", {TransactionNumber : invoice.TransactionNUmber, AmountToPay: invoice.AmountToPay});
+      .post("http://localhost:9010/ws/payment", {TransactionNumber : invoice.TransactionNUmber, AmountToPay: invoice.AmountToPay});
   }
   dataticket() {
     console.log("Print Ticket");
