@@ -55,7 +55,7 @@ io.on('connection', socket => {
   socket.on('invoice', data => {
     console.log(data);
     doc = new PDFDocument({page_width: 300});
-    doc.text('TransactionNumber ' + data.transaction, {width: 300, align: 'center'});
+    doc.text('TransactionNumber ' + data.TransactionNumber, {width: 300, align: 'center'});
     doc.text('Amount ' + data.total, {width: 300, align: 'center'});
     doc.pipe(fs.createWriteStream('../../BorneProduit/Receipts/invoice-' + data.transaction + '.pdf'))
     doc.end();
