@@ -67,7 +67,7 @@ io.on('connection', socket => {
   res.json('STATUS OK');
   });
 //PAYMENT
-app.post('/ws/paiement', function( req, res) {
+app.post('/ws/payment', function( req, res) {
   console.log(('info paiement: ' + JSON.stringify(req.body)));
   socket.emit('infoPaiement', {
     data : req.body.response

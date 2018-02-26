@@ -27,11 +27,11 @@ export class CartProvider {
     console.log(invoice);
     this.socket = socketIo('http://localhost:5000');
     this.socket.emit('invoice',invoice);
-    return this.http.post('http://10.1.1.77:9010/ws/paiement', invoice);
+    return this.http.post('http://localhost:9010/ws/payment', invoice);
   }
 dataticket() {
   console.log('Print Ticket');
-  return this.http.post('http://10.1.1.77:9010/ws/dataticket',{HostId: "CIEME_01",TicketType:"AppTicket"})
+  return this.http.post('http://localhost:9010/ws/dataticket',{HostId: "CIEME_01",TicketType:"AppTicket"})
 }
 
   

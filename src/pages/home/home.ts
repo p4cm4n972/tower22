@@ -162,7 +162,7 @@ export class HomePage {
             });
             toast.present();
             let transaction = Math.floor((Math.random() * 99999999999) + 1);
-            this.invoice = { transaction, total: this.total }
+            this.invoice = { TransactionNumber : transaction, AmountToPay: this.total }
             this.cartPvd.checkOut(this.invoice);
           }
         }
