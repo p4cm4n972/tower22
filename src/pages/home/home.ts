@@ -221,7 +221,10 @@ export class HomePage {
               });
               toast.present();
 
-              this.cartPvd.checkOut(this.invoice);
+              this.cartPvd.checkOut(this.invoice).subscribe( data => {
+                this.data = data;
+                console.log(data);
+              });
             }
           }
         ],

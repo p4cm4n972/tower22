@@ -32,10 +32,12 @@ app.all('/', function (req, res, next) {
 app.use(express.static('www'));
 
 //HEARTBEAT
-app.post('/ws/heartbeat', function( req, res) {
+app.post('/ws/heartbeat', function (req, res) {
   console.log(('serverSides: ' + req.body.Mode));
-  io.emit('data',{data : req.body.Mode});
-res.json('heartbeat');
+  io.emit('data', {
+    data: req.body.Mode
+  });
+  res.json('heartbeat');
 })
 //EXPRESS SERVER
 app.set('port', process.env.PORT || 5000);
@@ -47,47 +49,60 @@ server.listen(app.get('port'), function () {
   console.log(('serverSides: ' + JSON.stringify(req.body)));
 res.json('STATUS OK')
 })*/
-
+app.post('/ws/receipt', function (req, res) {
+  console.log(('info paiement: ' + JSON.stringify(req.body)));
+  res.json(req.body);
+});
 
 //SOCKET CONNECTION
 io.on('connection', socket => {
   console.log(`Socket ${socket.id} added`);
   socket.on('invoice', data => {
     console.log(data);
-    doc = new PDFDocument({page_width: 300});
-    doc.text('TransactionNumber ' + data.TransactionNumber, {width: 300, align: 'center'});
-    doc.text('Amount ' + data.total, {width: 300, align: 'center'});
-    doc.pipe(fs.createWriteStream('../BorneProduit/Receipts/invoice-' + data.TransactionNumber + '.pdf'))
+    doc = new PDFDocument({
+      page_width: 300
+    });
+    doc.text('TransactionNumber ' + data.TransactionNumber, {
+      width: 300,
+      align: 'center'
+    });
+    doc.text('Amount ' + data.total, {
+      width: 300,
+      align: 'center'
+    });
+    doc.pipe(fs.createWriteStream('../../BorneProduit/Receipts/invoice-' + data.TransactionNumber + '.pdf'))
     doc.end();
   });
   //STATUS
-  app.post('/ws/status', function( req, res) {
+  app.post('/ws/status', function (req, res) {
     console.log(('serverSideSocket: ' + JSON.stringify(req.body)));
-    socket.emit('clientdata',{data : req.body});
-  res.json('STATUS OK');
+    socket.emit('clientdata', {
+      data: req.body
+    });
+    res.json('STATUS OK');
   });
-//PAYMENT
-app.post('/ws/payment', function( req, res) {
-  console.log(('info paiement: ' + JSON.stringify(req.body)));
-  socket.emit('infoPaiement', {
-    data : req.body.response
-  })
-  res.json('info paiement');
-});
+  //PAYMENT
+  app.post('/ws/receipt', function (req, res) {
+    console.log(('info paiement: ' + JSON.stringify(req.body)));
+    socket.emit('infoPaiement', {
+      data: req.body.response
+    })
+    res.json('info paiement');
+  });
 
-app.post('ws/receipt', function( req, res) {
-  console.log('receipt: ' + JSON.stringify(req.body));
-  doc = new PDFDocument({page_width: 300});
-    doc.text(req.body, {width: 300, align: 'center'});
-    doc.pipe(fs.createWriteStream('../BorneProduit/DataTicket/dataTicket.pdf'))
-    doc.end();
+  /*app.post('ws/receipt', function (req, res) {
+    console.log('receipt: ' + JSON.stringify(req.body));
+    doc = new PDFDocument({page_width: 300});
+      doc.text(req.body, {width: 300, align: 'center'});
+      doc.pipe(fs.createWriteStream('../BorneProduit/DataTicket/dataTicket.pdf'))
+      doc.end();
     socket.emit('dataticket', {
-     data:  print
+      data: print
     });
     res.json('print ticket');
-})
-socket.on('disconnect', function () {
-  io.emit('user disconnected');
-});
+  })*/
+  socket.on('disconnect', function () {
+    io.emit('user disconnected');
+  });
 
 })
