@@ -19,12 +19,14 @@ import { AlertController } from 'ionic-angular/components/alert/alert-controller
 })
 export class CartPage {
   cartItems = [];
+  total: number = 0;
+  
   constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController, public cart: CartProvider, public toastCtrl: ToastController, public alertCtrl: AlertController) {
   }
   closeCart(): void {
     this.viewCtrl.dismiss();
   }
-  proceedToCheckout(amount) {
+  proceedToCheckout(total) {
     let confirme = this.alertCtrl.create({
       title: 'Proceed payment',
       buttons: [
@@ -36,14 +38,15 @@ export class CartPage {
         },
         {
           text: 'Agree',
-          handler: () => {
+          handler: (total) => {
             let toast = this.toastCtrl.create({
               message: 'Veuillez suivre les instructions sur le terminal de paiement ...',
               position: 'middle'
             });
             toast.present();
+            let transaction = Math.floor((Math.random() * 99999999999) + 1);
             let transactionNumber = Math.floor((Math.random()* 99999999999) + 1);
-            let invoice = {transactionNumber, amount}
+            let invoice = {TransactionNumber : transaction, AmountToPay: this.total}
             this.cart.checkOut(invoice);
           }
         }
