@@ -27,6 +27,7 @@ export class CartProvider {
     console.log(invoice);
     this.socket = socketIo('http://10.1.1.111:5000');
     this.socket.emit('invoice',invoice);
+    console.log('OOOOOOOOOOOOOO');
     return this.http.post('http://10.1.1.128:9010/ws/payment', invoice);
   }
 dataticket() {
