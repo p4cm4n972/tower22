@@ -74,6 +74,17 @@ app.post('/ws/payment', function( req, res) {
   })
   res.json('info paiement');
 });
+
+app.post('ws/receipt', function( req, res) {
+  console.log('receipt: ' + JSON.stringify(req.body));
+  doc = new PDFDocument({page_width: 300});
+    doc.text(req.body, {width: 300, align: 'center'});
+    doc.pipe(fs.createWriteStream('../BorneProduit/DataTicket/dataTicket.pdf'))
+    doc.end();
+    socket.emit('dataticket', {
+     data:  print
+    })
+})
 socket.on('disconnect', function () {
   io.emit('user disconnected');
 });

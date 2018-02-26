@@ -175,7 +175,7 @@ export class HomePage {
   status(data) {
     if (data.Mode === 'InService') {
       this.outOfService = false;
-    } else if (data === 'info paiement') {
+    } else if (data === 'print') {
       
       let toastOk = this.toastCtrl.create({
         message: 'Paiement accepté',
