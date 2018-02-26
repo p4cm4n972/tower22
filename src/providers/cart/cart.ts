@@ -22,12 +22,7 @@ export class CartProvider {
   checkOut(invoice) {
     console.log(invoice);
     return this.http
-      .post("http://10.1.1.128:9010/ws/payment", invoice)
-      .subscribe(data => {
-        this.socket = socketIo("http://10.1.1.111:5000");
-        this.socket.emit("invoice", invoice);
-        console.log("OOOOOOOOOOOOOO");
-      });
+      .post("http://10.1.1.128:9010/ws/payment", invoice);
   }
   dataticket() {
     console.log("Print Ticket");
