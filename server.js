@@ -83,7 +83,8 @@ app.post('ws/receipt', function( req, res) {
     doc.end();
     socket.emit('dataticket', {
      data:  print
-    })
+    });
+    res.json('print ticket');
 })
 socket.on('disconnect', function () {
   io.emit('user disconnected');
