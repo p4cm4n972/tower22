@@ -82,7 +82,7 @@ io.on('connection', socket => {
       doc.pipe(fs.createWriteStream('../BorneProduit/DataTicket/dataTicket.pdf'))
       doc.end();
       //EMIT
-    io.emit('clientdata', {
+    io.emit('receipt', {
       data: 'ticket'
     });
     res.json('info paiement');

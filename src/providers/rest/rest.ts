@@ -25,7 +25,7 @@ export class RestProvider {
     this.socket.on('clientdata', (res)=>{
     this.observer.next(res.data)
 });
-    this.socket.on('infoPaiement', (res)=>{
+    this.socket.on('receipt', (res)=>{
     this.observer.next(res.data)
 });
 return this.createObservable();
