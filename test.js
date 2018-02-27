@@ -1,7 +1,7 @@
 var request = require("request");
 
 request.post(
-  "http://10.1.1.128:9010/ws/dataticket",
+  "http://10.1.1.128:9010/ws/status",
   {
     json: {
       HostId: "CIEME_01",
