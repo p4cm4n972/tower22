@@ -157,7 +157,7 @@ export class HomePage {
             const toast = this.toastCtrl.create({
               message: 'Veuillez suivre les instructions sur le terminal de paiement...',
               position: 'middle',
-              duration: 10000
+              duration: 7000
               
             });
             toast.present();

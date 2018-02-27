@@ -79,7 +79,7 @@ io.on('connection', socket => {
     //PRINT TICKET
     doc = new PDFDocument({page_width: 300});
       doc.text(JSON.stringify(req.body), {width: 300, align: 'center'});
-      doc.pipe(fs.createWriteStream('../BorneProduit/DataTicket/dataTicket.pdf'))
+      doc.pipe(fs.createWriteStream('../BorneProduit/DataTicket/dataticket.pdf'))
       doc.end();
       //EMIT
     io.emit('receipt', {

@@ -22,26 +22,34 @@ export class CartProvider {
     console.log("Hello CartProvider Provider");
   }
   checkOut(tn, tt) {
-    console.log(typeof(tn), typeof(tt));
+    console.log(typeof tn, typeof tt);
     const httpOptions = {
       headers: new HttpHeaders({
-        "Content-Type": "application/json",
+        "Content-Type": "application/json"
       })
     };
-    return this.http.post(
-      this.uri,
-      JSON.stringify({
-        AmountToPay: tt.toString(),
-        TransactionNumber: tn.toString()
-      })
-    ).subscribe();
+    return this.http
+      .post(
+        this.uri,
+        JSON.stringify({
+          AmountToPay: tt.toString(),
+          TransactionNumber: tn.toString()
+        })
+      )
+      .subscribe();
   }
-
-
 
   dataticket() {
     console.log("Print Ticket");
-    return this.http.post("http://10.1.1.128:9010/ws/dataticket",'/home/aplus/BorneProduit/DataTicket/dataTicket.pdf').subscribe();
+    return this.http
+      .post(
+        "http://10.1.1.128:9010/ws/dataticket",
+        JSON.stringify({
+          "HostId": "CIEME_01",
+          "TicketTYpe": "CBTicket",
+          "path": "10.1.1.111:/aplus/BorneProduit/DataTicket/dataticket.pdf"
+        })
+      )
+      .subscribe();
   }
-  
 }
