@@ -30,7 +30,7 @@ export class CartProvider {
     };
     return this.http.post(
       this.uri,
-      ({
+      JSON.stringify({
         AmountToPay: tt.toString(),
         TransactionNumber: tn.toString()
       })
