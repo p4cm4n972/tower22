@@ -41,7 +41,7 @@ export class CartProvider {
 
   dataticket() {
     console.log("Print Ticket");
-    return this.http.post("http://10.1.1.128:9010/ws/dataticket", '/home/aplus/BorneProduit/DataTicket/dataTicket.pdf').subscribe();
+    return this.http.post("http://10.1.1.128:9010/ws/dataticket", JSON.stringify('/home/aplus/BorneProduit/DataTicket/dataTicket.pdf')).subscribe();
   }
   
 }
