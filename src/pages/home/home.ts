@@ -172,6 +172,7 @@ export class HomePage {
 
   }
   status(data) {
+    console.log(data);
     if (data.Mode === 'InService') {
       this.outOfService = false;
     } else if (data === 'ticket') {

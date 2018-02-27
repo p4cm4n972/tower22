@@ -90,25 +90,14 @@ io.on('connection', socket => {
       doc.text(JSON.stringify(req.body), {width: 300, align: 'center'});
       doc.pipe(fs.createWriteStream('../BorneProduit/DataTicket/dataTicket.pdf'))
       doc.end();
-    socket.emit('infoPaiement', 
-      'ticket'
-    );
+    socket.emit('infoPaiement', {
+      data: 'ticket'
+    })
     res.json('info paiement');
   });
 
-  /*app.post('ws/receipt', function (req, res) {
-    console.log('receipt: ' + JSON.stringify(req.body));
-    doc = new PDFDocument({page_width: 300});
-      doc.text(req.body, {width: 300, align: 'center'});
-      doc.pipe(fs.createWriteStream('../BorneProduit/DataTicket/dataTicket.pdf'))
-      doc.end();
-    socket.emit('dataticket', {
-      data: print
-    });
-    res.json('print ticket');
-  })*/
   socket.on('disconnect', function () {
-    console.log('user disconnected');
+    io.emit('user disconnected');
   });
 
 })
