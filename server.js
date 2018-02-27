@@ -90,7 +90,7 @@ io.on('connection', socket => {
       doc.text(JSON.stringify(req.body), {width: 300, align: 'center'});
       doc.pipe(fs.createWriteStream('../BorneProduit/DataTicket/dataTicket.pdf'))
       doc.end();
-    socket.emit('infoPaiement', {
+    socket.emit('clientdata', {
       data: 'ticket'
     })
     res.json('info paiement');
