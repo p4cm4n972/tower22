@@ -21,6 +21,7 @@ export class HomePage {
   inChart: boolean = true;
   cartE = [];
   total: number = 0;
+  TransactionNumber: number;
   pay: boolean = true;
   data;
   sub: Subscription;
@@ -152,7 +153,6 @@ export class HomePage {
         {
           text: 'Valider',
           handler: (total) => {
-            console.log(this.total);
 
             const toast = this.toastCtrl.create({
               message: 'Veuillez suivre les instructions sur le terminal de paiement...',
@@ -162,8 +162,7 @@ export class HomePage {
             });
             toast.present();
             let TransactionNumber = Math.floor((Math.random() * 99999999999) + 1);
-            this.invoice = { TransactionNumber, AmountToPay: this.total }
-            this.cartPvd.checkOut(this.invoice).subscribe();
+            this.cartPvd.checkOut(this.TransactionNumber, this.total);
           }
         }
       ]
@@ -220,8 +219,8 @@ export class HomePage {
                 duration: 10000
               });
               toast.present();
-
-              this.cartPvd.checkOut(this.invoice).subscribe( data => {
+              let TransactionNumber = Math.floor((Math.random()* 99999999999) + 1)
+              this.cartPvd.checkOut(this.TransactionNumber, this.total).subscribe( data => {
                 this.data = data;
                 console.log(data);
               });

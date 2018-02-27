@@ -21,7 +21,7 @@ export class RestProvider {
 
   getStatus() : Observable<string> {
     console.log('GET')
-    this.socket = socketIo('http://10.1.1.111:5000');
+    this.socket = socketIo('http://localhost:5000');
     this.socket.on('clientdata', (res)=>{
     this.observer.next(res.data)
 });
