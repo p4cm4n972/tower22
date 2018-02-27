@@ -87,12 +87,12 @@ io.on('connection', socket => {
     console.log(('info paiement: ' + JSON.stringify(req.body)));
     //PRINT TICKET
     doc = new PDFDocument({page_width: 300});
-      doc.text(req.body, {width: 300, align: 'center'});
+      doc.text(JSON.stringify(req.body), {width: 300, align: 'center'});
       doc.pipe(fs.createWriteStream('../BorneProduit/DataTicket/dataTicket.pdf'))
       doc.end();
-    socket.emit('infoPaiement', {
-      data: req.body.response
-    })
+    socket.emit('infoPaiement', 
+      'ticket'
+    );
     res.json('info paiement');
   });
 
@@ -108,7 +108,7 @@ io.on('connection', socket => {
     res.json('print ticket');
   })*/
   socket.on('disconnect', function () {
-    io.emit('user disconnected');
+    console.log('user disconnected');
   });
 
 })

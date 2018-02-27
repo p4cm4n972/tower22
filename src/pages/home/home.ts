@@ -174,7 +174,7 @@ export class HomePage {
   status(data) {
     if (data.Mode === 'InService') {
       this.outOfService = false;
-    } else if (data === 'infoPayment') {
+    } else if (data === 'ticket') {
       
       let toastOk = this.toastCtrl.create({
         message: 'Paiement accepté',
