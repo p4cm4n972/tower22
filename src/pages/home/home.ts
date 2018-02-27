@@ -174,7 +174,7 @@ export class HomePage {
   status(data) {
     if (data.Mode === 'InService') {
       this.outOfService = false;
-    } else if (data === 'print') {
+    } else if (data === 'infoPayment') {
       
       let toastOk = this.toastCtrl.create({
         message: 'Paiement accepté',
@@ -220,7 +220,7 @@ export class HomePage {
               });
               toast.present();
               let TransactionNumber = Math.floor((Math.random()* 99999999999) + 1)
-              this.cartPvd.checkOut(this.TransactionNumber, this.total);
+              this.cartPvd.checkOut(TransactionNumber, this.total);
             }
           }
         ],

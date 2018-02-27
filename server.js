@@ -50,10 +50,10 @@ server.listen(app.get('port'), function () {
   console.log(('serverSides: ' + JSON.stringify(req.body)));
 res.json('STATUS OK')
 })*/
-app.post('/ws/receipt', function (req, res) {
+/*app.post('/ws/receipt', function (req, res) {
   console.log(('info paiement: ' + JSON.stringify(req.body)));
   res.json(req.body);
-});
+});*/
 
 //SOCKET CONNECTION
 io.on('connection', socket => {
@@ -85,6 +85,11 @@ io.on('connection', socket => {
   //PAYMENT
   app.post('/ws/receipt', function (req, res) {
     console.log(('info paiement: ' + JSON.stringify(req.body)));
+    //PRINT TICKET
+    doc = new PDFDocument({page_width: 300});
+      doc.text(req.body, {width: 300, align: 'center'});
+      doc.pipe(fs.createWriteStream('../BorneProduit/DataTicket/dataTicket.pdf'))
+      doc.end();
     socket.emit('infoPaiement', {
       data: req.body.response
     })
