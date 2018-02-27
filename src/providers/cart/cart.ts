@@ -47,7 +47,7 @@ export class CartProvider {
         JSON.stringify({
           "HostId": "CIEME_01",
           "TicketTYpe": "CBTicket",
-          "path": "10.1.1.111:/aplus/BorneProduit/DataTicket/dataticket.pdf"
+          "path": "10.1.1.111:/BorneProduit/DataTicket/dataticket.pdf"
         })
       )
       .subscribe();
