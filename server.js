@@ -45,15 +45,6 @@ app.set('port', process.env.PORT || 5000);
 server.listen(app.get('port'), function () {
   console.log('Express server listening on port ' + app.get('port'));
 });
-//STATUS
-/*app.post('/ws/status', function( req, res) {
-  console.log(('serverSides: ' + JSON.stringify(req.body)));
-res.json('STATUS OK')
-})*/
-/*app.post('/ws/receipt', function (req, res) {
-  console.log(('info paiement: ' + JSON.stringify(req.body)));
-  res.json(req.body);
-});*/
 
 //SOCKET CONNECTION
 io.on('connection', socket => {
@@ -91,7 +82,7 @@ io.on('connection', socket => {
       doc.pipe(fs.createWriteStream('../BorneProduit/DataTicket/dataTicket.pdf'))
       doc.end();
       //EMIT
-    socket.emit('clientdata', {
+    io.emit('clientdata', {
       data: 'ticket'
     });
     res.json('info paiement');
