@@ -96,7 +96,6 @@ export class BornePage {
               toast.present();
               let transaction = Math.floor((Math.random()* 99999999999) + 1);
               let invoice = { transaction, total:this.total}
-              this.cartPvd.checkOut(invoice);
             }
           }
         ]

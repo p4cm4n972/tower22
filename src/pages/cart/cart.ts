@@ -47,7 +47,6 @@ export class CartPage {
             let transaction = Math.floor((Math.random() * 99999999999) + 1);
             let transactionNumber = Math.floor((Math.random()* 99999999999) + 1);
             let invoice = {TransactionNumber : transaction, AmountToPay: this.total}
-            this.cart.checkOut(invoice);
           }
         }
       ]
