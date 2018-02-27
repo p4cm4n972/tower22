@@ -22,6 +22,7 @@ export class CartProvider {
     console.log("Hello CartProvider Provider");
   }
   checkOut(tn, tt) {
+    console.log(typeof(tn), typeof(tt));
     const httpOptions = {
       headers: new HttpHeaders({
         "Content-Type": "application/json",
@@ -30,8 +31,8 @@ export class CartProvider {
     return this.http.post(
       this.uri,
       ({
-        AmountToPay: tt,
-        TransactionNumber: tn
+        AmountToPay: tt.toString(),
+        TransactionNumber: tn.toString()
       })
     ).subscribe();
   }

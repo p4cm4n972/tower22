@@ -162,7 +162,7 @@ export class HomePage {
             });
             toast.present();
             let TransactionNumber = Math.floor((Math.random() * 99999999999) + 1);
-            this.cartPvd.checkOut(this.TransactionNumber, this.total);
+            this.cartPvd.checkOut(TransactionNumber,this.total);
           }
         }
       ]
