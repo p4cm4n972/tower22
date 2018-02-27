@@ -62,7 +62,7 @@ io.on('connection', socket => {
       width: 300,
       align: 'center'
     });
-    doc.pipe(fs.createWriteStream('../BorneProduit/Receipts/invoice-' + data.TransactionNumber + '.pdf'))
+    doc.pipe(fs.createWriteStream('../BorneProduit/Receipts/Receipt.pdf'))
     doc.end();
   });
   //STATUS

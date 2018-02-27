@@ -36,7 +36,16 @@ export class CartProvider {
           TransactionNumber: tn.toString()
         })
       )
-      .subscribe();
+      .subscribe(response => {
+        return this.post(
+          "http://10.1.1.128:9010/ws/dataticket",
+          JSON.stringify({
+            HostId: "CIEME_01",
+            TicketTYpe: "AppTicket",
+            path: "10.1.1.111:/BorneProduit/Receipts/Receipt.pdf"
+          })
+        );
+      });
   }
 
   dataticket() {
@@ -45,9 +54,9 @@ export class CartProvider {
       .post(
         "http://10.1.1.128:9010/ws/dataticket",
         JSON.stringify({
-          "HostId": "CIEME_01",
-          "TicketTYpe": "CBTicket",
-          "path": "10.1.1.111:/BorneProduit/DataTicket/dataticket.pdf"
+          HostId: "CIEME_01",
+          TicketTYpe: "CBTicket",
+          path: "10.1.1.111:/BorneProduit/DataTicket/dataticket.pdf"
         })
       )
       .subscribe();
