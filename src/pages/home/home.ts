@@ -220,10 +220,7 @@ export class HomePage {
               });
               toast.present();
               let TransactionNumber = Math.floor((Math.random()* 99999999999) + 1)
-              this.cartPvd.checkOut(this.TransactionNumber, this.total).subscribe( data => {
-                this.data = data;
-                console.log(data);
-              });
+              this.cartPvd.checkOut(this.TransactionNumber, this.total);
             }
           }
         ],
