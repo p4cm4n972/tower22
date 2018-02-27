@@ -86,13 +86,10 @@ io.on('connection', socket => {
   app.post('/ws/receipt', function (req, res) {
     console.log(('info paiement: ' + JSON.stringify(req.body)));
     //PRINT TICKET
-    doc = new PDFDocument({page_width: 300});
-      doc.text(JSON.stringify(req.body), {width: 300, align: 'center'});
-      doc.pipe(fs.createWriteStream('../BorneProduit/DataTicket/dataTicket.pdf'))
-      doc.end();
+    
     socket.emit('clientdata', {
       data: 'ticket'
-    })
+    });
     res.json('info paiement');
   });
 
