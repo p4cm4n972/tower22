@@ -37,7 +37,7 @@ export class CartProvider {
         })
       )
       .subscribe(response => {
-        return this.post(
+        return this.http.post(
           "http://10.1.1.128:9010/ws/dataticket",
           JSON.stringify({
             HostId: "CIEME_01",
