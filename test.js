@@ -6,7 +6,7 @@ request.post(
     json: {
       "HostId": "CIEME_01",
       "TicketType": "CBTicket",
-      "TicketURL": "10.1.1.111:/BorneProduit/DataTicket/dataticket.pdf"
+      "TicketURL": "/home/aplus/BorneProduit/DataTicket/dataticket.pdf"
     }
   },
 
