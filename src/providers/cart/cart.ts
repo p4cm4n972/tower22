@@ -16,7 +16,7 @@ export class CartProvider {
   cart: any[] = [];
 
   private socket: Socket;
-  public uri = "http://10.1.1.128:9010/ws/payment";
+  public uri = "http://localhost:9010/ws/payment";
 
   constructor(public http: HttpClient) {
     console.log("Hello CartProvider Provider");
@@ -38,7 +38,7 @@ export class CartProvider {
       )
       .subscribe(response => {
         return this.http.post(
-          "http://10.1.1.128:9010/ws/dataticket",
+          "http://localhost:9010/ws/dataticket",
           JSON.stringify({
             HostId: "CIEME_01",
             TicketTYpe: "AppTicket",
@@ -52,7 +52,7 @@ export class CartProvider {
     console.log("Print Ticket");
     return this.http
       .post(
-        "http://10.1.1.128:9010/ws/dataticket",
+        "http://localhost:9010/ws/dataticket",
         JSON.stringify({
           HostId: "CIEME_01",
           TicketTYpe: "CBTicket",
