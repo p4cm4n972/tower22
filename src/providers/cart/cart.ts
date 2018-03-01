@@ -41,7 +41,7 @@ export class CartProvider {
           "http://localhost:9010/ws/dataticket",
           JSON.stringify({
             "HostId": "CIEME_01",
-            "TicketTYpe": "AppTicket",
+            "TicketType": "AppTicket",
             "TicketURL": "/BorneProduit/Receipts/Receipt.pdf"
           })
         );
