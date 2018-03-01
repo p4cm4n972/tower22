@@ -40,9 +40,9 @@ export class CartProvider {
         return this.http.post(
           "http://localhost:9010/ws/dataticket",
           JSON.stringify({
-            HostId: "CIEME_01",
-            TicketTYpe: "AppTicket",
-            path: "10.1.1.111:/BorneProduit/Receipts/Receipt.pdf"
+            "HostId": "CIEME_01",
+            "TicketTYpe": "AppTicket",
+            "TicketURL": "10.1.1.111:/BorneProduit/Receipts/Receipt.pdf"
           })
         );
       });
@@ -54,9 +54,9 @@ export class CartProvider {
       .post(
         "http://localhost:9010/ws/dataticket",
         JSON.stringify({
-          HostId: "CIEME_01",
-          TicketTYpe: "CBTicket",
-          path: "10.1.1.111:/BorneProduit/DataTicket/dataticket.pdf"
+          "HostId": "CIEME_01",
+          "TicketType": "CBTicket",
+          "TicketURL": "10.1.1.111:/BorneProduit/DataTicket/dataticket.pdf"
         })
       )
       .subscribe();

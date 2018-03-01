@@ -1,12 +1,12 @@
 var request = require("request");
 
 request.post(
-  "http://10.1.1.128:9010/ws/status",
+  "http://10.1.1.128:9010/ws/dataticket",
   {
     json: {
-      HostId: "CIEME_01",
-      TicketType: "CBTicket",
-      path: "10.1.1.111:/BorneProduit/DataTicket/dataticket.pdf"
+      "HostId": "CIEME_01",
+      "TicketType": "CBTicket",
+      "TicketURL": "10.1.1.111:/BorneProduit/DataTicket/dataticket.pdf"
     }
   },
 
@@ -14,9 +14,7 @@ request.post(
     if (!error && response.statusCode == 200) {
       console.log(body);
     } else {
-      console.error(error.message);
-      console.error(error.code);
-      console.error(error.errno);
+      console.error(error);
     }
   }
 );
