@@ -86,41 +86,33 @@ io.on("connection", function (socket) {
     doc = new PDFDocument({
       page_width: 300
     });
-    doc.text(dataticket.SubContractorId, {
+    doc.text('SBI :' + dataticket.SubContractorId, {
       width: 300,
-      align: "center"
     });
-    doc.text(dataticket.ProductId, {
+    doc.text('N° Carte :' + dataticket.NumCarte, {
       width: 300,
-      align: "center"
     });
-    doc.text(dataticket.ApplicationId, {
+    doc.text('ID Carte :' + dataticket.IdCarte, {
       width: 300,
-      align: "center"
+      
     });
-    doc.text(dataticket.TypeCarteBancaire, {
+    doc.text('Carte Bancaire :' + dataticket.TypeCarteBancaire, {
       width: 300,
-      align: "center"
     });
-    doc.text(dataticket.TypeCarteBancaire, {
+    doc.text('Date :' + dataticket.Date, {
       width: 300,
-      align: "center"
     });
-    doc.text(dataticket.AdresssLine1, {
+    doc.text('location :' + dataticket.AdressLine1, {
       width: 300,
-      align: "center"
     });
-    doc.text(dataticket.TypeTransaction, {
+    doc.text('Type Transaction :' + dataticket.TypeTransaction, {
       width: 300,
-      align: "center"
     });
-    doc.text(dataticket.TypeTicket, {
+    doc.text('Type ticket :' + dataticket.TypeTicket, {
       width: 300,
-      align: "center"
     });
-    doc.text(dataticket.Montant, {
+    doc.text('Montant :' + dataticket.Montant, {
       width: 300,
-      align: "center"
     });
     doc.pipe(fs.createWriteStream("../BorneProduit/DataTicket/dataticket.pdf"));
     doc.end();
