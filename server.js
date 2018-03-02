@@ -80,7 +80,7 @@ io.on("connection", function (socket) {
   });
   //PAYMENT
   app.post("/ws/receipt", function (req, res) {
-    const dataticket = JSON.stringify(req.body);
+    const dataticket = req.body;
     console.log("info paiement: " + dataticket);
     //PRINT TICKET
     doc = new PDFDocument({
