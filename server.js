@@ -80,12 +80,45 @@ io.on("connection", function (socket) {
   });
   //PAYMENT
   app.post("/ws/receipt", function (req, res) {
-    console.log("info paiement: " + JSON.stringify(req.body));
+    const dataticket = JSON.stringify(req.body);
+    console.log("info paiement: " + dataticket);
     //PRINT TICKET
     doc = new PDFDocument({
       page_width: 300
     });
-    doc.text(JSON.stringify(req.body), {
+    doc.text(dataticket.SubContractorId, {
+      width: 300,
+      align: "center"
+    });
+    doc.text(dataticket.ProductId, {
+      width: 300,
+      align: "center"
+    });
+    doc.text(dataticket.ApplicationId, {
+      width: 300,
+      align: "center"
+    });
+    doc.text(dataticket.TypeCarteBancaire, {
+      width: 300,
+      align: "center"
+    });
+    doc.text(dataticket.TypeCarteBancaire, {
+      width: 300,
+      align: "center"
+    });
+    doc.text(dataticket.AdresssLine1, {
+      width: 300,
+      align: "center"
+    });
+    doc.text(dataticket.TypeTransaction, {
+      width: 300,
+      align: "center"
+    });
+    doc.text(dataticket.TypeTicket, {
+      width: 300,
+      align: "center"
+    });
+    doc.text(dataticket.Montant, {
       width: 300,
       align: "center"
     });
