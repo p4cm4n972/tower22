@@ -224,7 +224,9 @@ export class HomePage {
       
 
       toastOk.present();
-    } else {
+    } else if ( data === 'CB') {
+      this.cartPvd.checkCB();
+    }else {
       let alert = this.alertCtrl.create({
         title: "Incident paiement",
         buttons: [

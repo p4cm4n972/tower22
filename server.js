@@ -90,7 +90,7 @@ io.on("connection", function (socket) {
   //PAYMENT
   app.post("/ws/receipt", function (req, res) {
     const dataticket = req.body;
-    console.log("info paiement: " + dataticket);
+    console.log("info paiement: " + JSON.stringify(dataticket));
     //PRINT TICKET
     doc = new PDFDocument({
       page_width: 300
@@ -125,8 +125,10 @@ io.on("connection", function (socket) {
     });
     doc.pipe(fs.createWriteStream("../BorneProduit/DataTicket/dataticket.pdf"));
     doc.end();
-    
-    res.json("info paiement");
+    io.emit("CB", {
+      data: "CB"
+    });
+    res.json("info CB");
   });
 
   socket.on("disconnect", function () {

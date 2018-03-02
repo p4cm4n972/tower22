@@ -28,6 +28,9 @@ export class RestProvider {
     this.socket.on('receipt', (res)=>{
     this.observer.next(res.data)
 });
+this.socket.on('CB', (res)=>{
+  this.observer.next(res.data)
+});
 return this.createObservable();
 }
 createObservable() : Observable<string> {

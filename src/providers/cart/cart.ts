@@ -21,6 +21,16 @@ export class CartProvider {
   constructor(public http: HttpClient) {
     console.log("Hello CartProvider Provider");
   }
+  checkCB() {
+    return this.http.post(
+      "http://10.1.1.128:9010/ws/dataticket",
+      JSON.stringify({
+        "HostId": "CIEME_01",
+        "TicketType": "CBTicket",
+        "TicketURL": "/home/aplus/BorneProduit/DataTicket/dataticket.pdf"
+      })
+    ).subscribe();
+  }
   checkOut(tn, tt) {
     console.log(typeof tn, typeof tt);
     const httpOptions = {
@@ -28,7 +38,7 @@ export class CartProvider {
         "Content-Type": "application/json"
       })
     };
-    const invoice = { TransactionNumber : tn, total : tt }
+    const invoice = { TransactionNumber: tn, total: tt }
     this.socket = socketIo('http://10.1.1.111:5000');
     this.socket.emit('invoice', invoice);
     return this.http
@@ -39,17 +49,7 @@ export class CartProvider {
           TransactionNumber: tn.toString()
         })
       )
-      .subscribe(response => {
-        return this.http.post(
-          "http://10.1.1.128:9010/ws/dataticket",
-          JSON.stringify({
-            "HostId": "CIEME_01",
-            "TicketType": "CBTicket",
-            "TicketURL": "/home/aplus/BorneProduit/DataTicket/dataticket.pdf"
-          })
-        )
-        .subscribe();
-      });
+      .subscribe();
   }
 
   dataticket() {
