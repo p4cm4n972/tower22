@@ -180,6 +180,32 @@ export class HomePage {
             toast.present();
             let TransactionNumber = Math.floor(Math.random() * 99999999999 + 1);
             this.cartPvd.checkOut(TransactionNumber, this.total);
+            toast.onDidDismiss(()=>{
+              let toastOk = this.toastCtrl.create({
+                message: "Paiement accepté",
+                position: "middle",
+                duration: 5000
+              });
+              toastOk.onDidDismiss(() => {
+                this.cartPvd.dataticket();
+                let toast = this.toastCtrl.create({
+                  message: "Impression CB encours ....",
+                  position: "middle",
+                  duration: 5000
+                });
+                toast.onDidDismiss(() => {
+                  for (let i = 0; i < this.articles.length; i++) {
+                    this.articles[i].qty = 0;
+                    this.total = 0;
+                    this.cart = 0;
+                  }
+                });
+                toast.present();
+              });
+        
+              toastOk.present();
+            })
+          ;
           }
         }
       ]
@@ -191,26 +217,11 @@ export class HomePage {
       this.outOfService = false;
     } else if (data === "ticket") {
       let toastOk = this.toastCtrl.create({
-        message: "Paiement accepté",
+        message: "Impression ticket encours ....",
         position: "middle",
         duration: 5000
       });
-      toastOk.onDidDismiss(() => {
-        this.cartPvd.dataticket();
-        let toast = this.toastCtrl.create({
-          message: "Impression ticket encours ....",
-          position: "middle",
-          duration: 5000
-        });
-        toast.onDidDismiss(() => {
-          for (let i = 0; i < this.articles.length; i++) {
-            this.articles[i].qty = 0;
-            this.total = 0;
-            this.cart = 0;
-          }
-        });
-        toast.present();
-      });
+      
 
       toastOk.present();
     } else {

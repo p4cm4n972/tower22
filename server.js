@@ -78,6 +78,15 @@ io.on("connection", function (socket) {
     });
     res.json("STATUS OK");
   });
+  //PRINT
+  app.post("/ws/cmdack", function (req, res) {
+    console.log("serverSideSocket: " + JSON.stringify(req.body));
+    //EMIT
+    io.emit("receipt", {
+      data: "ticket"
+    });
+    res.json("PRINT CB OK");
+  });
   //PAYMENT
   app.post("/ws/receipt", function (req, res) {
     const dataticket = req.body;
@@ -116,10 +125,7 @@ io.on("connection", function (socket) {
     });
     doc.pipe(fs.createWriteStream("../BorneProduit/DataTicket/dataticket.pdf"));
     doc.end();
-    //EMIT
-    io.emit("receipt", {
-      data: "ticket"
-    });
+    
     res.json("info paiement");
   });
 

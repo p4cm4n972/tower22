@@ -19,14 +19,14 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding class="card-background-page" on-touch="onTouch()">
+<ion-content padding class="card-background-page">
   <video poster="../../assets/imgs/bkg.jpg" playsinline autoplay muted loop width="100%" height="900">
     <source src="../../assets/imgs/video.mp4" type="video/mp4">
   </video>
   <form [formGroup]="item" (ngSubmit)="add(item.value)">
     <ion-item>
       <ion-label>
-        <h1>VEUILLEZ SELECTIONNER VOTRE TICKET ET LA QUANTITE, MERCI .</h1>
+        <h1 text-center>VEUILLEZ SELECTIONNER VOTRE TICKET ET LA QUANTITE, MERCI .</h1>
       </ion-label>
     </ion-item>
     

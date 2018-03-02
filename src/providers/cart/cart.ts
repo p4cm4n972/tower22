@@ -47,7 +47,8 @@ export class CartProvider {
             "TicketType": "CBTicket",
             "TicketURL": "/home/aplus/BorneProduit/DataTicket/dataticket.pdf"
           })
-        );
+        )
+        .subscribe();
       });
   }
 
