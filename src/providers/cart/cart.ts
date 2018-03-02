@@ -44,8 +44,8 @@ export class CartProvider {
           "http://10.1.1.128:9010/ws/dataticket",
           JSON.stringify({
             "HostId": "CIEME_01",
-            "TicketType": "AppTicket",
-            "TicketURL": "/home/aplus/BorneProduit/Receipts/Receipt.pdf"
+            "TicketType": "CBTicket",
+            "TicketURL": "/home/aplus/BorneProduit/DataTicket/dataticket.pdf"
           })
         );
       });
@@ -58,8 +58,8 @@ export class CartProvider {
         "http://10.1.1.128:9010/ws/dataticket",
         JSON.stringify({
           "HostId": "CIEME_01",
-          "TicketType": "CBTicket",
-          "TicketURL": "/home/aplus/BorneProduit/DataTicket/dataticket.pdf"
+          "TicketType": "AppTicket",
+          "TicketURL": "/home/aplus/BorneProduit/Receipts/receipt.pdf"
         })
       )
       .subscribe();

@@ -94,7 +94,7 @@ io.on("connection", function (socket) {
     });
     doc.text('ID Carte :' + dataticket.IdCarte, {
       width: 300,
-      
+
     });
     doc.text('Carte Bancaire :' + dataticket.TypeCarteBancaire, {
       width: 300,
