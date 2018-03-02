@@ -1,8 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Observable } from "rxjs/Observable";
 import * as socketIo from "socket.io-client";
-import { HttpHeaders } from "@angular/common/http";
 import { Socket } from "../../app/ws";
 /*
   Generated class for the CartProvider provider.
@@ -21,23 +19,9 @@ export class CartProvider {
   constructor(public http: HttpClient) {
     console.log("Hello CartProvider Provider");
   }
-  checkCB() {
-    return this.http.post(
-      "http://10.1.1.128:9010/ws/dataticket",
-      JSON.stringify({
-        "HostId": "CIEME_01",
-        "TicketType": "CBTicket",
-        "TicketURL": "/home/aplus/BorneProduit/DataTicket/dataticket.pdf"
-      })
-    ).subscribe();
-  }
+  //CHECK OUT AMOUNT
   checkOut(tn, tt) {
     console.log(typeof tn, typeof tt);
-    const httpOptions = {
-      headers: new HttpHeaders({
-        "Content-Type": "application/json"
-      })
-    };
     const invoice = { TransactionNumber: tn, total: tt }
     this.socket = socketIo('http://10.1.1.111:5000');
     this.socket.emit('invoice', invoice);
@@ -52,6 +36,18 @@ export class CartProvider {
       .subscribe();
   }
 
+  //PRINT CB TICKET
+  checkCB() {
+    return this.http.post(
+      "http://10.1.1.128:9010/ws/dataticket",
+      JSON.stringify({
+        "HostId": "CIEME_01",
+        "TicketType": "CBTicket",
+        "TicketURL": "/home/aplus/BorneProduit/DataTicket/dataticket.pdf"
+      })
+    ).subscribe();
+  }
+  //PRINT RECEIPT
   dataticket() {
     console.log("Print Ticket");
     return this.http

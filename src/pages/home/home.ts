@@ -180,42 +180,18 @@ export class HomePage {
             toast.present();
             let TransactionNumber = Math.floor(Math.random() * 99999999999 + 1);
             this.cartPvd.checkOut(TransactionNumber, this.total);
-            toast.onDidDismiss(()=>{
-              let toastOk = this.toastCtrl.create({
-                message: "Paiement accepté",
-                position: "middle",
-                duration: 5000
-              });
-              toastOk.onDidDismiss(() => {
-                this.cartPvd.dataticket();
-                let toast = this.toastCtrl.create({
-                  message: "Impression CB encours ....",
-                  position: "middle",
-                  duration: 5000
-                });
-                toast.onDidDismiss(() => {
-                  for (let i = 0; i < this.articles.length; i++) {
-                    this.articles[i].qty = 0;
-                    this.total = 0;
-                    this.cart = 0;
-                  }
-                });
-                toast.present();
-              });
-        
-              toastOk.present();
-            })
-          ;
           }
         }
       ]
     });
     confirme.present();
   }
+  //SOCKET CONNEXION LISTENER
   status(data) {
     if (data.Mode === "InService") {
       this.outOfService = false;
     } else if (data === "ticket") {
+      this.cartPvd.dataticket();
       let toastOk = this.toastCtrl.create({
         message: "Impression ticket encours ....",
         position: "middle",
@@ -226,36 +202,30 @@ export class HomePage {
       toastOk.present();
     } else if ( data === 'CB') {
       this.cartPvd.checkCB();
-    }else {
-      let alert = this.alertCtrl.create({
-        title: "Incident paiement",
-        buttons: [
-          {
-            text: "Annuler",
-            handler: () => {
-              console.log("proceed payment avort");
-            }
-          },
-          {
-            text: "Réessayer",
-            handler: total => {
-              let toast = this.toastCtrl.create({
-                message:
-                  "Veuillez suivre les instructions sur le terminal de paiement...",
-                position: "middle",
-                duration: 10000
-              });
-              toast.present();
-              let TransactionNumber = Math.floor(
-                Math.random() * 99999999999 + 1
-              );
-              this.cartPvd.checkOut(TransactionNumber, this.total);
-            }
-          }
-        ],
-        enableBackdropDismiss: false
+      let toastOk = this.toastCtrl.create({
+        message: "Paiement accepté",
+        position: "middle",
+        duration: 5000
       });
-      alert.present();
+      toastOk.onDidDismiss(() => {
+        this.cartPvd.checkCB();
+        let toast = this.toastCtrl.create({
+          message: "Impression CB encours ....",
+          position: "middle",
+          duration: 5000
+        });
+        toast.onDidDismiss(() => {
+          for (let i = 0; i < this.articles.length; i++) {
+            this.articles[i].qty = 0;
+            this.total = 0;
+            this.cart = 0;
+          }
+        });
+        toast.present();
+      });
+    
+      toastOk.present();
+      
     }
   }
 

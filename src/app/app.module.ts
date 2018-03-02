@@ -8,11 +8,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { RestProvider } from '../providers/rest/rest';
-import { BornePage } from '../pages/borne/borne';
 import { CartProvider } from '../providers/cart/cart';
-import { CartPage } from '../pages/cart/cart';
-import { OutOfServicePage } from '../pages/out-of-service/out-of-service';
-import { InitPage } from '../pages/init/init';
+
 
 @NgModule({
   declarations: [
