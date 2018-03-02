@@ -201,7 +201,6 @@ export class HomePage {
 
       toastOk.present();
     } else if ( data === 'CB') {
-      this.cartPvd.checkCB();
       let toastOk = this.toastCtrl.create({
         message: "Paiement accepté",
         position: "middle",
