@@ -43,7 +43,7 @@ export class CartProvider {
       JSON.stringify({
         "HostId": "CIEME_01",
         "TicketType": "CBTicket",
-        "TicketURL": "/home/aplus/BorneProduit/DataTicket/dataticket.pdf"
+        "TicketURL": "/BorneProduit/DataTicket/dataticket.pdf"
       })
     ).subscribe();
   }
@@ -56,7 +56,7 @@ export class CartProvider {
         JSON.stringify({
           "HostId": "CIEME_01",
           "TicketType": "AppTicket",
-          "TicketURL": "/home/aplus/BorneProduit/Receipts/receipt.pdf"
+          "TicketURL": "/BorneProduit/Receipts/receipt.pdf"
         })
       )
       .subscribe();
