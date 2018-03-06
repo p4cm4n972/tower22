@@ -85,7 +85,7 @@ io.on("connection", function (socket) {
     console.log("cmdackSK: ".bgCyan + JSON.stringify(req.body.Acknowledge));
     //EMIT
     io.emit("receipt", {
-      data: req.body.Acknowledge
+      data: (req.body.Acknowledge)
     });
     res.json("PRINT CB OK");
   });
