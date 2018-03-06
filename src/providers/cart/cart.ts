@@ -33,7 +33,7 @@ export class CartProvider {
           TransactionNumber: tn.toString()
         })
       )
-      ;
+      .subscribe();
   }
 
   //PRINT CB TICKET
@@ -59,6 +59,6 @@ export class CartProvider {
           "TicketURL": "BorneProduit/Receipts/receipt.pdf"
         })
       )
-      ;
+      .subscribe();
   }
 }
