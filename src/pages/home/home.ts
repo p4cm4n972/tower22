@@ -186,6 +186,34 @@ export class HomePage {
     });
     confirme.present();
   }
+  //DISPENSER
+  dispenser() {
+    let confirme = this.alertCtrl.create({
+      title: "Vous avez demandé une carte d'abonnement",
+      buttons: [
+        {
+          text: "Annuler",
+          handler: () => {
+            console.log("proceed payment avort");
+          }
+        },
+        {
+          text: "Valider",
+          handler: total => {
+            const toast = this.toastCtrl.create({
+              message:
+                "Veuillez patienter s'il vous plait ...",
+              position: "middle",
+              duration: 7000
+            });
+            toast.present();
+            this.cartPvd.dispenser();
+          }
+        }
+      ]
+    });
+    confirme.present();
+  }
   //SOCKET CONNEXION LISTENER
   status(data) {
     switch (data) {
@@ -225,6 +253,14 @@ export class HomePage {
         break;
       case 'Print DATA OK':
         console.log('UNKNOW DATA:' + data);
+        break;
+      case 'Dispenser OK':
+        let toastDispenser = this.toastCtrl.create({
+          message: "Merci de récuperer votre carte",
+          position: "middle",
+          duration: 8000
+        });
+        toastDispenser.present();
         break;
 
     }

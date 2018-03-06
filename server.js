@@ -92,7 +92,7 @@ io.on("connection", function (socket) {
   //PAYMENT
   app.post("/ws/receipt", function (req, res) {
     const dataticket = req.body;
-    console.log("receiptSK: ".bgMagenta + JSON.stringify(dataticket));
+    console.log("receiptSK: ".bgMagenta + JSON.stringify(dataticket.TypeTicket));
     //PRINT TICKET
     doc = new PDFDocument({
       page_width: 300

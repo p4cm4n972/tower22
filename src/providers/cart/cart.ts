@@ -62,4 +62,17 @@ export class CartProvider {
       )
       .subscribe();
   }
+  //DISPENSER
+  dispenser() {
+    console.log("Dispenser");
+    return this.http
+    .post(
+      "http://10.1.1.128:9010/ws/dispenser",
+      JSON.stringify({
+        "HostId": "CIEME_01",
+        "Cmd": "Distribute"
+        })
+      )
+      .subscribe();
+  }
 }
