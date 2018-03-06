@@ -200,7 +200,7 @@ export class HomePage {
       
 
       toastOk.present();
-    } else if ( data === 'CB') {
+    } else if ( data === 'Print CB OK') {
       let toastOk = this.toastCtrl.create({
         message: "Paiement accepté",
         position: "middle",
