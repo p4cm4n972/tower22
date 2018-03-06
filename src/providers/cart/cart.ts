@@ -43,7 +43,7 @@ export class CartProvider {
       JSON.stringify({
         "HostId": "CIEME_01",
         "TicketType": "CBTicket",
-        "TicketURL": "BorneProduit/DataTicket/dataticket.pdf"
+        "TicketURL": "BorneProduit/DataTicket/RecuCB.pdf"
       })
     )
     .subscribe();
@@ -52,12 +52,12 @@ export class CartProvider {
   dataticket() {
     console.log("Print Ticket");
     return this.http
-      .post(
-        "http://10.1.1.128:9010/ws/dataticket",
-        JSON.stringify({
-          "HostId": "CIEME_01",
-          "TicketType": "AppTicket",
-          "TicketURL": "BorneProduit/Receipts/receipt.pdf"
+    .post(
+      "http://10.1.1.128:9010/ws/dataticket",
+      JSON.stringify({
+        "HostId": "CIEME_01",
+        "TicketType": "AppTicket",
+        "TicketURL": "BorneProduit/Receipts/receipt.pdf"
         })
       )
       .subscribe();
