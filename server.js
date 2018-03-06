@@ -74,7 +74,7 @@ io.on("connection", function (socket) {
   });
   //STATUS
   app.post("/ws/status", function (req, res) {
-    console.log("serverSideSocket: ".green + JSON.stringify(req.body));
+    console.log("serverSideSocket: ".green + JSON.stringify(req.body.Mode));
     socket.emit("clientdata", {
       data: req.body
     });
