@@ -190,7 +190,7 @@ export class HomePage {
   status(data) {
     if (data.Mode === "InService") {
       this.outOfService = false;
-    } else if (data === "Print CB OK") {
+    } else if (data === "Print DATA OK") {
       this.cartPvd.dataticket();
       let toastOk = this.toastCtrl.create({
         message: "Impression ticket encours ....",
