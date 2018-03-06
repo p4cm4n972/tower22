@@ -87,7 +87,7 @@ io.on("connection", function (socket) {
     io.emit("receipt", {
       data: (req.body.Acknowledge)
     });
-    res.json("PRINT CB OK");
+    res.json(req.body.Acknowledge);
   });
   //PAYMENT
   app.post("/ws/receipt", function (req, res) {

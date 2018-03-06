@@ -188,43 +188,48 @@ export class HomePage {
   }
   //SOCKET CONNEXION LISTENER
   status(data) {
-    if (data.Mode === "InService") {
-      this.outOfService = false;
-    } else if (data === "Print CB OK") {
-      this.cartPvd.dataticket();
-      let toastOk = this.toastCtrl.create({
-        message: "Impression ticket encours ....",
-        position: "middle",
-        duration: 5000
-      });
-      
-
-      toastOk.present();
-    } else if ( data === 'CB') {
-      let toastOk = this.toastCtrl.create({
-        message: "Paiement accepté",
-        position: "middle",
-        duration: 5000
-      });
-      toastOk.onDidDismiss(() => {
-        this.cartPvd.checkCB();
-        let toast = this.toastCtrl.create({
-          message: "Impression CB encours ....",
+    switch (data) {
+      case 'CB':
+        let toastOk = this.toastCtrl.create({
+          message: "Paiement accepté",
           position: "middle",
           duration: 5000
         });
-        toast.onDidDismiss(() => {
-          for (let i = 0; i < this.articles.length; i++) {
-            this.articles[i].qty = 0;
-            this.total = 0;
-            this.cart = 0;
-          }
+        toastOk.onDidDismiss(() => {
+          this.cartPvd.checkCB();
+          let toast = this.toastCtrl.create({
+            message: "Impression CB encours ....",
+            position: "middle",
+            duration: 5000
+          });
+          toast.onDidDismiss(() => {
+            for (let i = 0; i < this.articles.length; i++) {
+              this.articles[i].qty = 0;
+              this.total = 0;
+              this.cart = 0;
+            }
+          });
+          toast.present();
         });
-        toast.present();
-      });
-    
-      toastOk.present();
-      
+
+        toastOk.present();
+        break;
+      case 'Print CB OK':
+        this.cartPvd.dataticket();
+        let toastCB = this.toastCtrl.create({
+          message: "Impression ticket encours ....",
+          position: "middle",
+          duration: 5000
+        });
+        toastCB.present();
+        break;
+      case 'Print DATA OK':
+        console.log('UNKNOW DATA:' + data);
+        break;
+
+    }
+    if (data.Mode === "InService") {
+      this.outOfService = false;
     }
   }
 
