@@ -5,6 +5,8 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const server = require("http").createServer(app);
 const io = require("socket.io")(server);
+//style console
+const colors = require('colors');
 
 const fs = require("fs");
 const PDFDocument = require("pdfkit");
@@ -38,8 +40,8 @@ app.all("/", function (req, res, next) {
 app.use(express.static("www"));
 
 //HEARTBEAT
-app.post("/ws/heartbeat", function (req, res) {
-  console.log("serverSides: " + req.body.Mode);
+app.post("/ws/heartbeat".red, function (req, res) {
+  console.log("HeartbeatSV: " + req.body.Mode);
   io.emit("data", {
     data: req.body.Mode
   });
@@ -71,7 +73,7 @@ io.on("connection", function (socket) {
     doc.end();
   });
   //STATUS
-  app.post("/ws/status", function (req, res) {
+  app.post("/ws/status".green, function (req, res) {
     console.log("serverSideSocket: " + JSON.stringify(req.body));
     socket.emit("clientdata", {
       data: req.body
@@ -79,8 +81,8 @@ io.on("connection", function (socket) {
     res.json("STATUS OK");
   });
   //PRINT
-  app.post("/ws/cmdack", function (req, res) {
-    console.log("serverSideSocket: " + JSON.stringify(req.body));
+  app.post("/ws/cmdack".bgCyan, function (req, res) {
+    console.log("cmdackSK: " + JSON.stringify(req.body));
     //EMIT
     io.emit("receipt", {
       data: "ticket"
@@ -88,9 +90,9 @@ io.on("connection", function (socket) {
     res.json("PRINT CB OK");
   });
   //PAYMENT
-  app.post("/ws/receipt", function (req, res) {
+  app.post("/ws/receipt".bgMagenta, function (req, res) {
     const dataticket = req.body;
-    console.log("info paiement: " + JSON.stringify(dataticket));
+    console.log("receiptSK: " + JSON.stringify(dataticket));
     //PRINT TICKET
     doc = new PDFDocument({
       page_width: 300
