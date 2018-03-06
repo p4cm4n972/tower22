@@ -82,7 +82,7 @@ io.on("connection", function (socket) {
   });
   //PRINT
   app.post("/ws/cmdack", function (req, res) {
-    console.log("cmdackSK: ".bgCyan + JSON.stringify(req.body));
+    console.log("cmdackSK: ".bgCyan + JSON.stringify(req.body.Acknowledge));
     //EMIT
     io.emit("receipt", {
       data: req.body.Acknowledge
