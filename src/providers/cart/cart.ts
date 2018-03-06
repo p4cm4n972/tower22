@@ -45,7 +45,8 @@ export class CartProvider {
         "TicketType": "CBTicket",
         "TicketURL": "BorneProduit/DataTicket/dataticket.pdf"
       })
-    );
+    )
+    .subscribe();
   }
   //PRINT RECEIPT
   dataticket() {
